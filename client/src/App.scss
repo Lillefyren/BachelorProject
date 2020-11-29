@@ -1,8 +1,8 @@
 @import "variables.scss";
+@import "mixins.scss";
 
 .App {
   text-align: center;
-  background-color: $red;
 }
 
 .App-logo {
@@ -37,5 +37,104 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+//CARD
+
+.Card {
+  border: 2px solid black;
+  border-radius: 25px;
+  .Card__header {
+  }
+
+  .Card__image {
+    position: relative;
+  }
+
+  //Cross
+  .Card__cross {
+  }
+
+  .Card__cross:hover {
+    cursor: pointer;
+  }
+
+  .Card__cross:before,
+  .Card__cross:after {
+    content: "";
+    top: 0;
+    left: 0;
+    background: $red;
+    margin: auto 4px;
+    height: 1px;
+    transform: rotateZ(45deg);
+    box-shadow: 0px 1px 1px #ffffff9e;
+  }
+
+  .Card__body {
+  }
+
+  .Card__title {
+    font-size: 24px;
+    color: $gray;
+    font-family: $font-family;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .Card__instructor,
+  .Card__price,
+  .Card__start-date,
+  .Card__end-date {
+    font-size: 16px;
+    color: $gray;
+    font-family: $font-family;
+    font-weight: 400;
+  }
+
+  .Card__instructor {
+    padding-top: 10px;
+  }
+
+  .Card__price {
+  }
+
+  .Card__spaces {
+    padding-bottom: 10px;
+  }
+
+  .Card__start-date {
+    padding-top: 10px;
+  }
+
+  .Card__end-date {
+    padding-bottom: 10px;
+  }
+
+  .Card__btn {
+    @include primary-button;
+  }
+}
+
+//NAVIGATION
+.primary-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: $main-color;
+  li a {
+    display: block;
+    color: $gray;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family: $font-family;
+  }
+
+  li a:hover {
+    background-color: $brown;
+    color: $white;
   }
 }
