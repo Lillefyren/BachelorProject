@@ -1,5 +1,5 @@
-import react, { useState } from "react";
-import "./App.scss";
+import react, { useEffect, useState } from "react";
+import "../App.scss";
 import Axios from "axios";
 
 function Registration() {
@@ -16,7 +16,7 @@ function Registration() {
 
   //sending register request to backend - register method
   const register = () => {
-    Axios.post("http://localhost3001/register", {
+    Axios.post("http://localhost:3001/register", {
       username: usernameReg,
       password: passwordReg,
     }).then((response) => {
@@ -26,7 +26,7 @@ function Registration() {
 
   //login method
   const login = () => {
-    Axios.post("http://localhost3001/login", {
+    Axios.post("http://localhost:3001/login", {
       username: username,
       password: password,
     }).then((response) => {
@@ -38,6 +38,14 @@ function Registration() {
       console.log(response.data);
     });
   };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/login").then((response) => {
+      if (response.data.loggedIn == true) {
+        setLoginStatus(response.data.user[0].username);
+      }
+    });
+  }, []);
 
   return (
     <>

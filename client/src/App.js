@@ -1,19 +1,15 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Registration from "./View/Registration";
+import Homepage from "./View/Homepage";
 import "./App.scss";
-import Cart from "./card.js";
-import Navigation from "./Navigation.js";
-import Registration from "./registration.js";
 
 function App() {
   return (
-    <>
-      <div className="App">
-        <h1>Hello Word</h1>
-        <Cart />
-        <Navigation />
-        <Registration />
-      </div>
-    </>
+    <Router>
+      <Route path="/registration" exact render={(props) => <Registration />} />{" "}
+      <Route path="/" exact render={(props) => <Homepage />} />{" "}
+    </Router>
   );
 }
 
