@@ -43,7 +43,7 @@ function Registration() {
     <>
       <div className="registration">
         <h1>Registration</h1>
-        <label>Username</label>
+        <label>Email</label>
         <input
           type="text"
           onChange={(e) => {
@@ -62,10 +62,10 @@ function Registration() {
 
       <div className="login">
         <h1>Login</h1>
-        <label>Username</label>
+        <label>Email</label>
         <input
           type="text"
-          placeholder="Username.."
+          placeholder="Email.."
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -85,3 +85,5 @@ function Registration() {
     </>
   );
 }
+
+export default Registration;

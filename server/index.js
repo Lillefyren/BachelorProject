@@ -6,16 +6,15 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors()); //allowing crossplatform sending data from frontend to backend
 
-const db = mysql.createPool({
+const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
   database: "JordnaerYoga",
 });
 
+//testing that server is running
 app.get("/", (req, res) => {
-  const sqlInsert = "INSERT INTO ";
-  db.query();
   res.send("Hello world");
 });
 
