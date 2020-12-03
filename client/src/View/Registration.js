@@ -4,14 +4,14 @@ import Axios from "axios";
 
 function Registration() {
   //usestate for registration
-  const [usernameReg, setUsernameReg] = useState("");
+  const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [firstNameReg, setFirstNameReg] = useState("");
   const [lastNameReg, setLastNameReg] = useState("");
   const [numberReg, setNumberReg] = useState("");
 
   //usestate for login
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   //usestate for loginstatus
@@ -22,7 +22,7 @@ function Registration() {
   //sending register request to backend - register method
   const register = () => {
     Axios.post("http://localhost:3001/register", {
-      username: usernameReg,
+      email: emailReg,
       password: passwordReg,
       firstname: firstNameReg,
       lastname: lastNameReg,
@@ -35,7 +35,7 @@ function Registration() {
   //login method
   const login = () => {
     Axios.post("http://localhost:3001/login", {
-      username: username,
+      email: email,
       password: password,
     }).then((response) => {
       if (!response.data.auth) {
@@ -51,7 +51,7 @@ function Registration() {
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].username);
+        setLoginStatus(response.data.user[0].email);
       }
     });
   }, []);
@@ -74,7 +74,7 @@ function Registration() {
         <input
           type="text"
           onChange={(e) => {
-            setUsernameReg(e.target.value);
+            setEmailReg(e.target.value);
           }}
         />
         <label>Password</label>
@@ -115,7 +115,7 @@ function Registration() {
           type="text"
           placeholder="Email.."
           onChange={(e) => {
-            setUsername(e.target.value);
+            setEmail(e.target.value);
           }}
         />
         <label>Password</label>

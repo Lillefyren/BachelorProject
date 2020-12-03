@@ -46,7 +46,7 @@ const db = mysql.createConnection({
 
 //Register
 app.post("/register", (req, res) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
@@ -59,7 +59,7 @@ app.post("/register", (req, res) => {
 
     db.query(
       "INSERT INTO USERS (UserEmail, UserPassword, UserFirstName, UserLastName, UserPhone) VALUES (?,?,?,?,?)",
-      [username, hash, firstname, lastname, number], //hashing password, so it wont be shown in the database
+      [email, hash, firstname, lastname, number], //hashing password, so it wont be shown in the database
       (err, result) => {
         console.log(err);
       }
@@ -99,45 +99,41 @@ app.get("/login", (req, res) => {
 
 //login
 app.post("/login", (req, res) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
 
-  db.query(
-    "SELECT * FROM USERS WHERE UserEmail = ?;",
-    username,
-    (err, result) => {
-      if (err) {
-        res.send({ err: err });
-      }
-
-      if (result.length > 0) {
-        bcrypt.compare(password, result[0].UserPassword, (error, response) => {
-          console.log(response);
-          console.log(result[0]);
-          if (response) {
-            const id = result[0].id; //getting id from the first user in the list
-            const token = jwt.sign({ id }, "jwtSecret", {
-              expiresIn: 300,
-            }); //make jwtSecret into a .env file and .env variable
-
-            console.log(token);
-
-            req.session.user = result;
-
-            console.log(req.session.user);
-            res.json({ auth: true, token: token, result: result });
-          } else {
-            res.json({
-              auth: false,
-              message: "Wrong combination of username / password",
-            }); //checking if password/email is correct
-          }
-        });
-      } else {
-        res.json({ auth: false, message: "No user exists" });
-      }
+  db.query("SELECT * FROM USERS WHERE UserEmail = ?;", email, (err, result) => {
+    if (err) {
+      res.send({ err: err });
     }
-  );
+
+    if (result.length > 0) {
+      bcrypt.compare(password, result[0].UserPassword, (error, response) => {
+        console.log(response);
+        console.log(result[0]);
+        if (response) {
+          const id = result[0].id; //getting id from the first user in the list
+          const token = jwt.sign({ id }, "jwtSecret", {
+            expiresIn: 300,
+          }); //make jwtSecret into a .env file and .env variable
+
+          console.log(token);
+
+          req.session.user = result;
+
+          console.log(req.session.user);
+          res.json({ auth: true, token: token, result: result });
+        } else {
+          res.json({
+            auth: false,
+            message: "Wrong combination of username / password",
+          }); //checking if password/email is correct
+        }
+      });
+    } else {
+      res.json({ auth: false, message: "No user exists" });
+    }
+  });
 });
 
 app.listen(3001, () => {
