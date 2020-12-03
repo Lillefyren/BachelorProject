@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
+import { Row, Container } from "react-bootstrap";
 
 function Registration() {
   //usestate for registration
@@ -9,13 +10,6 @@ function Registration() {
   const [firstNameReg, setFirstNameReg] = useState("");
   const [lastNameReg, setLastNameReg] = useState("");
   const [numberReg, setNumberReg] = useState("");
-
-  //usestate for login
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  //usestate for loginstatus
-  const [loginStatus, setLoginStatus] = useState(false);
 
   Axios.defaults.withCredentials = true;
 
@@ -32,106 +26,55 @@ function Registration() {
     });
   };
 
-  //login method
-  const login = () => {
-    Axios.post("http://localhost:3001/login", {
-      email: email,
-      password: password,
-    }).then((response) => {
-      if (!response.data.auth) {
-        setLoginStatus(false);
-      } else {
-        localStorage.setItem("token", response.data.token); //setting local storage token
-        setLoginStatus(true);
-      }
-    });
-  };
-
-  //might need to delete this useEffect
-  useEffect(() => {
-    Axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setLoginStatus(response.data.user[0].email);
-      }
-    });
-  }, []);
-
-  const userAuthentication = () => {
-    Axios.get("http://localhost:3001/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    }).then((response) => {
-      console.log(response);
-    });
-  };
-
   return (
     <>
-      <div className="registration">
-        <h1>Registration</h1>
-        <label>Email</label>
+      <Container className="registration">
+        <h1 className="registration__title">Registration</h1>
+
+        <label className="registration__email-label">Email</label>
         <input
+          className="registration__email-input"
           type="text"
           onChange={(e) => {
             setEmailReg(e.target.value);
           }}
         />
-        <label>Password</label>
+        <label className="registration__password-label">Password</label>
         <input
+          className="registration__password-input"
           type="text"
           onChange={(e) => {
             setPasswordReg(e.target.value);
           }}
         />
-        <label>Fornavn</label>
+        <label className="registration__firstName-label">Fornavn</label>
         <input
+          className="registration__firstName-input"
           type="text"
           onChange={(e) => {
             setFirstNameReg(e.target.value);
           }}
         ></input>
-        <label>Efternavn</label>
+        <label className="registration__lastName-label">Efternavn</label>
         <input
+          className="registration__lastName-input"
           type="text"
           onChange={(e) => {
             setLastNameReg(e.target.value);
           }}
         ></input>
-        <label>Telefonnummer</label>
+        <label className="registration__phone-label">Telefonnummer</label>
         <input
+          className="registration__phone-input"
           type="text"
           onChange={(e) => {
             setNumberReg(e.target.value);
           }}
         ></input>
-        <button onClick={register}>Register</button>
-      </div>
-
-      <div className="login">
-        <h1>Login</h1>
-        <label>Email</label>
-        <input
-          type="text"
-          placeholder="Email.."
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <label>Password</label>
-        <input
-          type="text"
-          placeholder="Pasword.."
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <button onClick={login}>Login</button>
-      </div>
-
-      {loginStatus && (
-        <button onClick={userAuthentication}> Check if authenticated</button>
-      )}
+        <button className="registration__btn" onClick={register}>
+          Register
+        </button>
+      </Container>
     </>
   );
 }

@@ -138,3 +138,109 @@
     color: $white;
   }
 }
+
+//REGISTRATION
+.registration {
+  padding: 15px 0px;
+  border: 2px solid $gray;
+  display: flex;
+  flex-direction: column;
+
+  .registration__title {
+    //font-size: 24px;
+    font-family: $font-family;
+    color: $gray;
+    text-align: center;
+  }
+
+  .registration__email-label,
+  .registration__password-label,
+  .registration__firstName-label,
+  .registration__lastName-label,
+  .registration__phone-label {
+    font-family: $font-family;
+    color: $gray;
+    font-size: $font-size-base;
+    padding-top: 15px;
+  }
+
+  .registration__email-input,
+  .registration__password-input,
+  .registration__firstName-input,
+  .registration__lastName-input,
+  .registration__phone-input {
+    font-family: $font-family;
+    color: $gray;
+    font-size: $font-size-base;
+    margin-bottom: 15px;
+  }
+
+  .registration__email-label {
+  }
+
+  .registration__email-input {
+  }
+
+  .registration__password-label {
+  }
+
+  .registration__password-input {
+  }
+
+  .registration__firstName-label {
+  }
+
+  .registration__firstName-input {
+  }
+
+  .registration__lastName-label {
+  }
+
+  .registration__lastName-input {
+  }
+
+  .registration__phone-label {
+  }
+
+  .registration__phone-input {
+  }
+
+  .registration__btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    @include primary-button;
+  }
+}
+
+//LOGIN
+.login {
+  padding: 15px 0px;
+  border: 2px solid $gray;
+  display: flex;
+  flex-direction: column;
+
+  .login__title {
+    //font-size: 24px;
+    font-family: $font-family;
+    color: $gray;
+    text-align: center;
+  }
+
+  .login__email-label {
+  }
+
+  .login__email-input {
+  }
+
+  .login__password-label {
+  }
+
+  .login__password-input {
+  }
+
+  .login__btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    @include primary-button;
+  }
+}
