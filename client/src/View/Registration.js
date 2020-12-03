@@ -6,6 +6,9 @@ function Registration() {
   //usestate for registration
   const [usernameReg, setUsernameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
+  const [firstNameReg, setFirstNameReg] = useState("");
+  const [lastNameReg, setLastNameReg] = useState("");
+  const [numberReg, setNumberReg] = useState("");
 
   //usestate for login
   const [username, setUsername] = useState("");
@@ -21,6 +24,9 @@ function Registration() {
     Axios.post("http://localhost:3001/register", {
       username: usernameReg,
       password: passwordReg,
+      firstname: firstNameReg,
+      lastname: lastNameReg,
+      number: numberReg,
     }).then((response) => {
       console.log(response);
     });
@@ -41,15 +47,16 @@ function Registration() {
     });
   };
 
-  /* useEffect(() => {
+  //might need to delete this useEffect
+  useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn == true) {
+      if (response.data.loggedIn === true) {
         setLoginStatus(response.data.user[0].username);
       }
     });
-  }, []); */
+  }, []);
 
-  const userAuthenticatoin = () => {
+  const userAuthentication = () => {
     Axios.get("http://localhost:3001/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
@@ -77,6 +84,27 @@ function Registration() {
             setPasswordReg(e.target.value);
           }}
         />
+        <label>Fornavn</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setFirstNameReg(e.target.value);
+          }}
+        ></input>
+        <label>Efternavn</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setLastNameReg(e.target.value);
+          }}
+        ></input>
+        <label>Telefonnummer</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setNumberReg(e.target.value);
+          }}
+        ></input>
         <button onClick={register}>Register</button>
       </div>
 
@@ -102,7 +130,7 @@ function Registration() {
       </div>
 
       {loginStatus && (
-        <button onClick={userAuthenticatoin}> Check if authenticated</button>
+        <button onClick={userAuthentication}> Check if authenticated</button>
       )}
     </>
   );

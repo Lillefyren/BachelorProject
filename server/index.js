@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
     key: "userID", //name of cookie
-    secret: "secret",
+    secret: "secret", //secret usually has to be more advanced
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -36,6 +36,7 @@ app.use(
   })
 );
 
+//connecting to the database
 const db = mysql.createConnection({
   user: "root",
   host: "localhost",
@@ -47,6 +48,9 @@ const db = mysql.createConnection({
 app.post("/register", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const number = req.body.number;
 
   bcrypt.hash(password, saltRounds, (err, hash) => {
     if (err) {
@@ -54,8 +58,8 @@ app.post("/register", (req, res) => {
     }
 
     db.query(
-      "INSERT INTO USERS (UserEmail, UserPassword) VALUES (?,?)",
-      [username, hash], //hashing password, so it wont be shown in the database
+      "INSERT INTO USERS (UserEmail, UserPassword, UserFirstName, UserLastName, UserPhone) VALUES (?,?,?,?,?)",
+      [username, hash, firstname, lastname, number], //hashing password, so it wont be shown in the database
       (err, result) => {
         console.log(err);
       }
@@ -99,7 +103,7 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
 
   db.query(
-    "SELECT * FROM users WHERE UserEmail = ?;",
+    "SELECT * FROM USERS WHERE UserEmail = ?;",
     username,
     (err, result) => {
       if (err) {
@@ -107,12 +111,16 @@ app.post("/login", (req, res) => {
       }
 
       if (result.length > 0) {
-        bcrypt.compare(password, result[0].password, (error, response) => {
+        bcrypt.compare(password, result[0].UserPassword, (error, response) => {
+          console.log(response);
+          console.log(result[0]);
           if (response) {
             const id = result[0].id; //getting id from the first user in the list
             const token = jwt.sign({ id }, "jwtSecret", {
               expiresIn: 300,
             }); //make jwtSecret into a .env file and .env variable
+
+            console.log(token);
 
             req.session.user = result;
 
