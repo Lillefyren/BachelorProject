@@ -12,7 +12,9 @@ function Registration() {
   const [password, setPassword] = useState("");
 
   //usestate for loginstatus
-  const [loginStatus, setLoginStatus] = useState("");
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  Axios.defaults.withCredentials = true;
 
   //sending register request to backend - register method
   const register = () => {
@@ -30,22 +32,32 @@ function Registration() {
       username: username,
       password: password,
     }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message);
+      if (!response.data.auth) {
+        setLoginStatus(false);
       } else {
-        setLoginStatus(response.data[0].username);
+        localStorage.setItem("token", response.data.token); //setting local storage token
+        setLoginStatus(true);
       }
-      console.log(response.data);
     });
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn == true) {
         setLoginStatus(response.data.user[0].username);
       }
     });
-  }, []);
+  }, []); */
+
+  const userAuthenticatoin = () => {
+    Axios.get("http://localhost:3001/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+  };
 
   return (
     <>
@@ -89,7 +101,9 @@ function Registration() {
         <button onClick={login}>Login</button>
       </div>
 
-      <h1>{loginStatus}</h1>
+      {loginStatus && (
+        <button onClick={userAuthenticatoin}> Check if authenticated</button>
+      )}
     </>
   );
 }
