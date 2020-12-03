@@ -143,8 +143,11 @@
 .registration {
   padding: 15px 0px;
   border: 2px solid $gray;
-  display: flex;
-  flex-direction: column;
+
+  .registration__form {
+    display: flex;
+    flex-direction: column;
+  }
 
   .registration__title {
     //font-size: 24px;

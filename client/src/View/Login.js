@@ -1,7 +1,7 @@
 import react, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
-import { Row, Container } from "react-bootstrap";
+import { Container, Col } from "react-bootstrap";
 
 function Login() {
   //usestate for login
@@ -69,6 +69,10 @@ function Login() {
             setPassword(e.target.value);
           }}
         />
+        <Col>
+          <a href="">Opret bruger</a>
+          <a href="">Glemt password</a>
+        </Col>
         <button className="login__btn" onClick={login}>
           Login
         </button>
