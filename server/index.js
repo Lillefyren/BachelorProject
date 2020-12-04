@@ -136,6 +136,26 @@ app.post("/login", (req, res) => {
   });
 });
 
+//Create Course
+app.post("/createcourse", (req, res) => {
+  const title = req.body.title;
+  const description = req.body.description;
+  const spaces = req.body.spaces;
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
+  const price = req.body.price;
+  const picture = req.body.picture;
+  const instructorNames = req.body.instructorNames;
+
+    db.query(
+      "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy) VALUES (?,?,?,?,?,?,?,?,?)",
+      [title, description, spaces, startDate, endDate, price, picture, instructorNames, 1],
+      (err, result) => {
+        console.log(err);
+      }
+    );
+  });
+
 app.listen(3001, () => {
   console.log("Running on port 3001");
 });
