@@ -38,8 +38,6 @@ function MainContent(props) {
         <Route path={"/Createcourse"} exact>
           <CreateCourse />
         </Route>
-
-        <Route path={"/Logout"} exact></Route>
       </Switch>
     );
   }

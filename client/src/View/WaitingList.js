@@ -1,7 +1,13 @@
 import React from "react";
 
 function WaitingList() {
-  return <div>Venteliste</div>;
+  return (
+    <>
+      <div>
+        <h1>Venteliste</h1>
+      </div>
+    </>
+  );
 }
 
-export default WaitingList();
+export default WaitingList;

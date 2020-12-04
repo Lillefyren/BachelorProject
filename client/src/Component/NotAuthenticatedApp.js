@@ -16,6 +16,9 @@ function NotAuthenticatedApp() {
       <Route path={"/Registration"}>
         <Registration />
       </Route>
+      <Route path="*" exact>
+        <Redirect to={"/Login"} />
+      </Route>
     </Switch>
   );
 }

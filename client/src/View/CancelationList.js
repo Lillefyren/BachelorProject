@@ -4,4 +4,4 @@ function CancelationList() {
   return <div>Venteliste</div>;
 }
 
-export default CancelationList();
+export default CancelationList;

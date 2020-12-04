@@ -125,7 +125,8 @@
   padding: 0;
   width: 200px;
   background-color: $main-color;
-  li a {
+  li a,
+  button {
     display: block;
     color: $gray;
     padding: 8px 16px;

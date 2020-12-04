@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import NavigationUI from "./NavigationUI";
+import NavItem from "./NavItem";
 import NavLink from "./NavLink";
 import { TokenContext } from "./TokenProvider";
 
@@ -11,12 +11,21 @@ function NavigationUser() {
   return (
     <>
       <NavigationUI>
-        <button onClick={() => handleRemoveToken()}>logout</button>
-        <NavLink to={"/Teamoverview"} title="Holdoversigt" />
-        <NavLink to={"/Yourteam"} title="Dine hold" />
-        <NavLink to={"/Waitinglist"} title="Venteliste" />
-        <NavLink to={"/Profileinformation"} title="Profiloplysninger" />
-        <NavLink to={"/Logout"} title="Logud" />
+        <NavItem>
+          <button onClick={() => handleRemoveToken()}>logout</button>
+        </NavItem>
+        <NavItem>
+          <NavLink to={"/Teamoverview"} title="Holdoversigt" />
+        </NavItem>
+        <NavItem>
+          <NavLink to={"/Yourteam"} title="Dine hold" />
+        </NavItem>
+        <NavItem>
+          <NavLink to={"/Waitinglist"} title="Venteliste" />
+        </NavItem>
+        <NavItem>
+          <NavLink to={"/Profileinformation"} title="Profiloplysninger" />
+        </NavItem>
       </NavigationUI>
     </>
   );

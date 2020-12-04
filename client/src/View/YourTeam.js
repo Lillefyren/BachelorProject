@@ -4,4 +4,4 @@ function YourTeam() {
   return <div>Dine hold</div>;
 }
 
-export default YourTeam();
+export default YourTeam;

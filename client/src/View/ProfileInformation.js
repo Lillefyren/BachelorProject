@@ -4,4 +4,4 @@ function ProfileInformation() {
   return <div>ProfileInformation</div>;
 }
 
-export default ProfileInformation();
+export default ProfileInformation;
