@@ -7,8 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import { TokenProvider } from "./Component/TokenProvider";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <TokenProvider children={<App />} />
-  </BrowserRouter>,
+  <TokenProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </TokenProvider>,
   document.getElementById("root")
 );

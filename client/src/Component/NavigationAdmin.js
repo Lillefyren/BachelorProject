@@ -7,7 +7,8 @@ function NavigationAdmin() {
   return (
     <>
       <NavigationUI>
-        <Navlink to={"/"} title="Dashboard" />
+        <NavLink to={"/"} title="Dashboard" />
+        <NavLink to={"/createcourse"} title="Create Course" />
       </NavigationUI>
     </>
   );

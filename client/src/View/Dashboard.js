@@ -11,21 +11,24 @@ export default function Homepage() {
 
   const getUserMod = () => {
     setIsLoading(true);
-    Axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn == true) {
-        setRole(response.data.user[0].isAdmin);
-      }
-      setIsLoading(false);
-    });
+    Axios.get("http://localhost:3001/login")
+      .then((response) => {
+        if (response.data.loggedIn == true) {
+          setRole(response.data.user[0].IsAdmin.data[0]);
+        }
+      })
+      .then(() => {
+        setIsLoading(false);
+      });
   };
 
   //whenever we try to access this page, we need to make this request.
   useEffect(() => {
     getUserMod();
-  }, []);
+  }, [role]);
 
   if (isLoading) {
-    return <div>is loading</div>;
+    return <div>is loading</div>; //Dette bliver vidst, hvis der ikke er noget indhold endnu - Erstat dette med en spinner (viser ingen routes indtil man finder ud af, hvilken rolle user har)
   }
 
   return (

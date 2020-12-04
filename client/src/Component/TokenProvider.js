@@ -3,15 +3,19 @@ import React from "react";
 const TokenContext = React.createContext(null);
 
 function TokenProvider(props) {
-  const [token, setToken] = React.useState(null);
+  const [token, setToken] = React.useState(
+    localStorage.getItem("token") || null
+  );
 
   const handleSetToken = (token) => {
     localStorage.setItem("token", token); //setting local storage token
+
     setToken(token);
   };
 
   const handleRemoveToken = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token"); //removing local storage token
+    console.log("test");
     setToken(null);
   };
 
