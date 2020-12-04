@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard from "./View/Dashboard";
 import Registration from "./View/Registration";
 import Login from "./View/Login";
+import CreateCourse from "./View/CreateCourse";
 import "./App.scss";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Route path="/registration" exact render={(props) => <Registration />} />{" "}
       <Route path="/" exact render={(props) => <Dashboard />} />{" "}
       <Route path="/login" exact render={(props) => <Login />} />{" "}
+      <Route path="/createcourse" exact render={(props) => <CreateCourse />} />{" "}
     </Router>
   );
 }
