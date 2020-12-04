@@ -9,6 +9,7 @@ export default function Homepage() {
   const [isLoading, setIsLoading] = useState(false);
   Axios.defaults.withCredentials = true;
 
+  //checking what role you have
   const getUserMod = () => {
     setIsLoading(true);
     Axios.get("http://localhost:3001/login")

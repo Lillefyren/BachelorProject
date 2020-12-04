@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.scss";
 
+//DETTE KOMPONENT KAN NOK GODT SLETTES
+
 class Navigation extends React.Component {
   render() {
     return (

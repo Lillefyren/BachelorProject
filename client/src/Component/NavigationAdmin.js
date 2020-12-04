@@ -7,8 +7,12 @@ function NavigationAdmin() {
   return (
     <>
       <NavigationUI>
-        <NavLink to={"/"} title="Dashboard" />
-        <NavLink to={"/createcourse"} title="Create Course" />
+        <NavLink to={"/"} title="Holdoversigt" />
+        <NavLink to={"/Yourteam"} title="Dine hold" />
+        <NavLink to={"/Cancelationlist"} title="Afbudsliste" />
+        <NavLink to={"/Profilinformation"} title="Profiloplysninger" />
+        <NavLink to={"/Createcourse"} title="Opret hold" />
+        <NavLink to={"/Logout"} title="Logud" />
       </NavigationUI>
     </>
   );

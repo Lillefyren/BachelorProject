@@ -12,6 +12,11 @@ function NavigationUser() {
     <>
       <NavigationUI>
         <button onClick={() => handleRemoveToken()}>logout</button>
+        <NavLink to={"/Teamoverview"} title="Holdoversigt" />
+        <NavLink to={"/Yourteam"} title="Dine hold" />
+        <NavLink to={"/Waitinglist"} title="Venteliste" />
+        <NavLink to={"/Profileinformation"} title="Profiloplysninger" />
+        <NavLink to={"/Logout"} title="Logud" />
       </NavigationUI>
     </>
   );

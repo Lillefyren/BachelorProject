@@ -1,9 +1,12 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Dashboard from "../View/Dashboard";
-import Login from "../View/Login";
 import CreateCourse from "../View/CreateCourse";
-import Teamoverview from "./Teamoverview";
+import Teamoverview from "../View/Teamoverview";
+import YourTeam from "../View/YourTeam";
+import ProfileInformation from "../View/ProfileInformation";
+import WaitingList from "../View/WaitingList";
+import CancelationList from "../View/CancelationList";
+import Logout from "../View/Logout";
 
 //render det content der skal være på siden, i forhold til den route man er på
 
@@ -20,17 +23,47 @@ function MainContent(props) {
           <Teamoverview />
         </Route>
 
+        <Route path={"/Yourteam"} exact>
+          <YourTeam />
+        </Route>
+
+        <Route path={"/Cancelationlist"} exact>
+          <CancelationList />
+        </Route>
+
+        <Route path={"/Profilinformation"} exact>
+          <ProfileInformation />
+        </Route>
+
         <Route path={"/Createcourse"} exact>
           <CreateCourse />
         </Route>
+
+        <Route path={"/Logout"} exact></Route>
       </Switch>
     );
   }
-  //for user
+
+  //use the following route if you're not admin
   return (
     <Switch>
       <Route path="/" exact render={(props) => <div>Hey im a user</div>} />{" "}
-      <Route path="/createcourse" exact render={(props) => <CreateCourse />} />{" "}
+      <Route path={"/"} exact>
+        <Redirect to="/Home" />
+      </Route>
+      <Route path={"/Home"} exact>
+        <Teamoverview />
+      </Route>
+      <Route path={"/Yourteam"} exact>
+        <YourTeam />
+      </Route>
+      <Route path={"/Waitinglist"} exact>
+        <WaitingList />
+      </Route>
+      <Route path={"/Profileinformation"} exact>
+        <ProfileInformation />
+      </Route>
+      <Route path={"/Logout"} exact></Route>
     </Switch>
   );
 }
