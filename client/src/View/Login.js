@@ -28,7 +28,7 @@ function Login() {
     });
   };
 
-  //might need to delete this useEffect
+  //useeffect works when loaded.
   useEffect(() => {
     Axios.get("http://localhost:3001/login").then((response) => {
       if (response.data.loggedIn === true) {
