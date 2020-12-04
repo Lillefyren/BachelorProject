@@ -1,9 +1,13 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
 import { Container, Col } from "react-bootstrap";
+import { TokenContext } from "../Component/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const { handleSetToken } = React.useContext(TokenContext); //obj destruction
+
   //usestate for login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +16,8 @@ function Login() {
   const [loginStatus, setLoginStatus] = useState(false);
 
   Axios.defaults.withCredentials = true;
+
+  const history = useHistory();
 
   //login method
   const login = () => {
@@ -22,8 +28,9 @@ function Login() {
       if (!response.data.auth) {
         setLoginStatus(false);
       } else {
-        localStorage.setItem("token", response.data.token); //setting local storage token
+        handleSetToken(response.data.token);
         setLoginStatus(true);
+        history.push("/");
       }
     });
   };

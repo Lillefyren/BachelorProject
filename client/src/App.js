@@ -5,16 +5,12 @@ import Registration from "./View/Registration";
 import Login from "./View/Login";
 import CreateCourse from "./View/CreateCourse";
 import "./App.scss";
+import NotAuthenticatedApp from "./Component/NotAuthenticatedApp";
+import { TokenContext } from "./Component/TokenProvider";
 
 function App() {
-  return (
-    <Router>
-      <Route path="/registration" exact render={(props) => <Registration />} />{" "}
-      <Route path="/" exact render={(props) => <Dashboard />} />{" "}
-      <Route path="/login" exact render={(props) => <Login />} />{" "}
-      <Route path="/createcourse" exact render={(props) => <CreateCourse />} />{" "}
-    </Router>
-  );
+  const { token } = React.useContext(TokenContext);
+  return token ? <Dashboard /> : <NotAuthenticatedApp />;
 }
 
 export default App;
