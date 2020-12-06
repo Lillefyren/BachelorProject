@@ -3,7 +3,7 @@ import React from "react";
 function WaitingList() {
   return (
     <>
-      <div>
+      <div className="waitinglist">
         <h1>Venteliste</h1>
       </div>
     </>

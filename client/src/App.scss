@@ -2,6 +2,17 @@
 @import "mixins.scss";
 @import "Dashboard.scss";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 1920px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
 .App {
   text-align: center;
 }

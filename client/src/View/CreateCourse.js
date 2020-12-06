@@ -18,14 +18,14 @@ function CreateCourse() {
   //sending register request to backend - register method
   const create = () => {
     Axios.post("http://localhost:3001/createcourse", {
-    title: titleReg,
-    description: descriptionReg,
-    spaces: spacesReg,
-    startDate: startDateReg,
-    endDate: endDateReg,
-    price: priceReg,
-    picture: pictureReg,
-    instructorNames: instructorNamesReg,
+      title: titleReg,
+      description: descriptionReg,
+      spaces: spacesReg,
+      startDate: startDateReg,
+      endDate: endDateReg,
+      price: priceReg,
+      picture: pictureReg,
+      instructorNames: instructorNamesReg,
     }).then((response) => {
       console.log(response);
     });
@@ -33,7 +33,7 @@ function CreateCourse() {
 
   return (
     <>
-      <div className="registration">
+      <div className="createcourse">
         <h1>Skab nyt kursus</h1>
         <label>Titel</label>
         <input
