@@ -10,6 +10,7 @@ function CreateCourse() {
   const [startDateReg, setstartDateReg] = useState("");
   const [endDateReg, setendDateReg] = useState("");
   const [priceReg, setpriceReg] = useState("");
+  const [adresseReg, setadresseReg] = useState("");
   const [pictureReg, setpictureReg] = useState("");
   const [instructorNamesReg, setinstructorNamesReg] = useState("");
 
@@ -24,6 +25,7 @@ function CreateCourse() {
       startDate: startDateReg,
       endDate: endDateReg,
       price: priceReg,
+      address: adresseReg,
       picture: pictureReg,
       instructorNames: instructorNamesReg,
     }).then((response) => {
@@ -49,13 +51,31 @@ function CreateCourse() {
             setdescriptionReg(e.target.value);
           }}
         />
-        <label>Mængden af Pladser</label>
+
+        <label>Instruktør</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setinstructorNamesReg(e.target.value);
+          }}
+        />
+
+        <label>Antal pladser</label>
         <input
           type="number"
           onChange={(e) => {
             setspacesReg(e.target.value);
           }}
         ></input>
+
+        <label>Pris</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setpriceReg(e.target.value);
+          }}
+        />
+
         <label>Start Dato</label>
         <input
           type="date"
@@ -70,15 +90,15 @@ function CreateCourse() {
             setendDateReg(e.target.value);
           }}
         ></input>
-        <button onClick={create}>Opret</button>
 
-        <label>Pris</label>
+        <label>Adresse</label>
         <input
           type="text"
           onChange={(e) => {
-            setpriceReg(e.target.value);
+            setadresseReg(e.target.value);
           }}
-        />
+        ></input>
+
         <label>Billede</label>
         <input
           type="file"
@@ -86,13 +106,7 @@ function CreateCourse() {
             setpictureReg(e.target.value);
           }}
         />
-        <label>Instruktør</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setinstructorNamesReg(e.target.value);
-          }}
-        />
+
         <button onClick={create}>Opret</button>
       </div>
     </>

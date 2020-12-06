@@ -146,9 +146,10 @@ app.post("/createcourse", (req, res) => {
   const price = req.body.price;
   const picture = req.body.picture;
   const instructorNames = req.body.instructorNames;
+  const address = req.body.address;
 
   db.query(
-    "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy) VALUES (?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy, CourseAddress) VALUES (?,?,?,?,?,?,?,?,?)",
     [
       title,
       description,
@@ -159,6 +160,7 @@ app.post("/createcourse", (req, res) => {
       picture,
       instructorNames,
       1,
+      address,
     ],
     (err, result) => {
       console.log(err);
