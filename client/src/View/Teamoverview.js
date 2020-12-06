@@ -1,7 +1,7 @@
 import React from "react";
 
 function Teamoverview() {
-  return <div>Teamoverview</div>;
+  return <div>Holdoversigt</div>;
 }
 
 export default Teamoverview;

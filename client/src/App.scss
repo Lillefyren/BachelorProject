@@ -1,5 +1,6 @@
 @import "variables.scss";
 @import "mixins.scss";
+@import "Dashboard.scss";
 
 .App {
   text-align: center;
@@ -123,8 +124,9 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 200px;
+  width: 100%;
   background-color: $main-color;
+
   li a,
   button {
     display: block;
@@ -134,10 +136,25 @@
     font-family: $font-family;
   }
 
-  li a:hover {
+  li button {
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+  }
+
+  li a:hover,
+  button:hover {
     background-color: $brown;
     color: $white;
   }
+}
+
+//UPPER BAR
+.tester {
+  background-color: red;
+  height: 200px;
+  width: 100%;
 }
 
 //REGISTRATION
@@ -222,6 +239,20 @@
   border: 2px solid $gray;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 15px;
+  max-width: 440px;
+  min-width: 320px;
+  min-height: 338px;
+  width: calc(100% - 40px);
+
+  .Login__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 
   .login__title {
     //font-size: 24px;

@@ -1,7 +1,7 @@
 import React from "react";
 
 function ProfileInformation() {
-  return <div>ProfileInformation</div>;
+  return <div className="profilinformation">Profiloplysninger</div>;
 }
 
 export default ProfileInformation;

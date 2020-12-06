@@ -3,6 +3,8 @@ import Axios from "axios";
 import NavigationAdmin from "../Component/NavigationAdmin";
 import NavigationUser from "../Component/NavigationUser";
 import MainContent from "../Component/MainContent";
+import { Spinner, Col } from "react-bootstrap";
+import TopBar from "../Component/TopBar";
 
 export default function Homepage() {
   const [role, setRole] = useState("");
@@ -28,14 +30,24 @@ export default function Homepage() {
     getUserMod();
   }, [role]);
 
+  //if loading, we will return a spinner, untill routes get found untill role is figured out.
   if (isLoading) {
-    return <div>is loading</div>; //Dette bliver vidst, hvis der ikke er noget indhold endnu - Erstat dette med en spinner (viser ingen routes indtil man finder ud af, hvilken rolle user har)
+    return (
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    );
   }
 
   return (
-    <div>
-      {role === 1 ? <NavigationAdmin /> : <NavigationUser />}
-      <MainContent isAdmin={role} />
+    <div className="dashboard">
+      {role === 1 ? (
+        <NavigationAdmin className="dasboard__navigation-Admin" />
+      ) : (
+        <NavigationUser className="dasboard__navigation-User" />
+      )}
+      <div className="dashboard__topbar" />
+      <MainContent className="dashboard__maincontent" isAdmin={role} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationUI from "./NavigationUI";
+import NavUl from "./NavUl";
 import NavItem from "./NavItem";
 import NavLink from "./NavLink";
 import { TokenContext } from "./TokenProvider";
@@ -10,12 +10,9 @@ function NavigationUser() {
 
   return (
     <>
-      <NavigationUI>
+      <NavUl>
         <NavItem>
-          <button onClick={() => handleRemoveToken()}>logout</button>
-        </NavItem>
-        <NavItem>
-          <NavLink to={"/Teamoverview"} title="Holdoversigt" />
+          <NavLink to={"/Home"} title="Holdoversigt" />
         </NavItem>
         <NavItem>
           <NavLink to={"/Yourteam"} title="Dine hold" />
@@ -26,7 +23,10 @@ function NavigationUser() {
         <NavItem>
           <NavLink to={"/Profileinformation"} title="Profiloplysninger" />
         </NavItem>
-      </NavigationUI>
+        <NavItem>
+          <button onClick={() => handleRemoveToken()}>logud</button>
+        </NavItem>
+      </NavUl>
     </>
   );
 }

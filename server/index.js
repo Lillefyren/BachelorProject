@@ -147,14 +147,31 @@ app.post("/createcourse", (req, res) => {
   const picture = req.body.picture;
   const instructorNames = req.body.instructorNames;
 
-    db.query(
-      "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy) VALUES (?,?,?,?,?,?,?,?,?)",
-      [title, description, spaces, startDate, endDate, price, picture, instructorNames, 1],
-      (err, result) => {
-        console.log(err);
-      }
-    );
-  });
+  db.query(
+    "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy) VALUES (?,?,?,?,?,?,?,?,?)",
+    [
+      title,
+      description,
+      spaces,
+      startDate,
+      endDate,
+      price,
+      picture,
+      instructorNames,
+      1,
+    ],
+    (err, result) => {
+      console.log(err);
+    }
+  );
+});
+
+//User data
+/* app.get("/user/id", (req, res) => {
+  db.query("SELECT * FROM USERS WHERE UserName = ?;"),
+    email,
+    (err, result) => {};
+}); */
 
 app.listen(3001, () => {
   console.log("Running on port 3001");

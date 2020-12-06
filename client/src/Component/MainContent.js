@@ -9,6 +9,8 @@ import CancelationList from "../View/CancelationList";
 import Logout from "../View/Logout";
 
 //render det content der skal være på siden, i forhold til den route man er på
+//vise det rigtige content ift. URL
+//Det ændrer sig ikke, så derfor har vi det, og så skal man re'render menuen hele tiden, hvis man satte den ind
 
 function MainContent(props) {
   //admin
@@ -44,25 +46,27 @@ function MainContent(props) {
 
   //use the following route if you're not admin
   return (
-    <Switch>
-      <Route path="/" exact render={(props) => <div>Hey im a user</div>} />{" "}
-      <Route path={"/"} exact>
-        <Redirect to="/Home" />
-      </Route>
-      <Route path={"/Home"} exact>
-        <Teamoverview />
-      </Route>
-      <Route path={"/Yourteam"} exact>
-        <YourTeam />
-      </Route>
-      <Route path={"/Waitinglist"} exact>
-        <WaitingList />
-      </Route>
-      <Route path={"/Profileinformation"} exact>
-        <ProfileInformation />
-      </Route>
-      <Route path={"/Logout"} exact></Route>
-    </Switch>
+    <>
+      <Switch>
+        <Route path="/" exact render={(props) => <div>Hey im a user</div>} />{" "}
+        <Route path={"/"} exact>
+          <Redirect to="/Home" />
+        </Route>
+        <Route path={"/Home"} exact>
+          <Teamoverview />
+        </Route>
+        <Route path={"/Yourteam"} exact>
+          <YourTeam />
+        </Route>
+        <Route path={"/Waitinglist"} exact>
+          <WaitingList />
+        </Route>
+        <Route path={"/Profileinformation"} exact>
+          <ProfileInformation />
+        </Route>
+        <Route path={"/Logout"} exact></Route>
+      </Switch>
+    </>
   );
 }
 
