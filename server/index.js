@@ -169,11 +169,12 @@ app.post("/createcourse", (req, res) => {
 });
 
 //User data
-/* app.get("/user/id", (req, res) => {
-  db.query("SELECT * FROM USERS WHERE UserName = ?;"),
-    email,
-    (err, result) => {};
-}); */
+app.get("/user", (req, res) => {
+  const sqlSelect = "SELECT * FROM USERS";
+  db.query(sqlSelect, (err, result) => {
+    res.send(result);
+  });
+});
 
 app.listen(3001, () => {
   console.log("Running on port 3001");

@@ -46,7 +46,7 @@ export default function Homepage() {
       ) : (
         <NavigationUser className="dasboard__navigation-User" />
       )}
-      <div className="dashboard__topbar" />
+      <TopBar className="dashboard__topbar" />
       <MainContent className="dashboard__maincontent" isAdmin={role} />
     </div>
   );

@@ -8,7 +8,7 @@ import { TokenContext } from "./TokenProvider";
 function NavigationAdmin() {
   const { handleRemoveToken } = React.useContext(TokenContext);
   const testing = React.useContext(TokenContext);
-  console.log(testing);
+  //console.log(testing);
   return (
     <>
       <NavUl>
