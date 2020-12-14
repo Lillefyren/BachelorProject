@@ -113,6 +113,7 @@ app.post("/login", (req, res) => {
         console.log(result[0]);
         if (response) {
           const id = result[0].id; //getting id from the first user in the list
+          console.log("HER ER VORES ID ", id);
           const token = jwt.sign({ id }, "jwtSecret", {
             expiresIn: 300,
           }); //make jwtSecret into a .env file and .env variable
@@ -167,6 +168,14 @@ app.post("/createcourse", (req, res) => {
     }
   );
 });
+
+app.get("/getcourses", (req, res) => {
+    // Get the table contents
+        db.query("SELECT * FROM course", (err, results, fields) => {
+          if(err) throw err;
+          res.send(results);
+        });
+      });
 
 //User data
 app.get("/user", (req, res) => {

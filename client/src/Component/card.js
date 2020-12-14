@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 
-class Cart extends React.Component {
+class Card extends React.Component {
   render() {
     return (
       <div className="Card">
@@ -27,4 +27,4 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart;
+export default Card;
