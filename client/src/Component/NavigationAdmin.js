@@ -12,6 +12,7 @@ function NavigationAdmin() {
   return (
     <>
       <NavUl>
+        <img src="../img/jord-logo.png" alt="logo" width="500" height="600" />
         <NavItem>
           <NavLink to={"/Home"} title="Holdoversigt" />
         </NavItem>

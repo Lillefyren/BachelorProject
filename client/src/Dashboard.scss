@@ -25,12 +25,29 @@
   grid-area: t;
   background-color: $secondary-color;
   //max-height: 86px;
+
+  .dashboard__logo-title,
+  .dashboard__fullname {
+    font-family: $font-family;
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 15px;
+  }
+
+  .dashboard__logo-title {
+    float: left;
+  }
+
+  .dashboard__fullname {
+    float: right;
+  }
 }
 
 .dashboard__maincontent,
 .profilinformation,
 .teamoverview,
 .createcourse,
-.waitinglist {
+.waitinglist,
+.profileinformation {
   grid-area: m;
 }

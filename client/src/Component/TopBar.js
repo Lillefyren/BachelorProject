@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import React from "react";
+import { Col } from "react-bootstrap";
+import { TokenContext } from "./TokenProvider";
 
 function TopBar() {
-  const [userName, setUserName] = useState([]);
-
-  useEffect(() => {
-    Axios.get("http://localhost:3001/user").then((response) => {
-      setUserName(response.data);
-    });
-  }, []);
+  const { userFirstName, userLastName } = React.useContext(TokenContext);
+  const fullName = `${userFirstName} ${userLastName}`;
 
   return (
-    <div className="dashboard__topbar">
-      {userName.map((val) => {
-        return (
-          <div key="kage">
-            <p>{val.UserFirstName}</p>
-            <p>{val.UserLastName}</p>
-          </div>
-        );
-      })}
-    </div>
+    <Col className="dashboard__topbar">
+      <p className="dashboard__logo-title">Jordnær Yoga</p>
+      <p className="dashboard__fullname">{fullName}</p>
+    </Col>
   );
 }
 

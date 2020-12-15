@@ -109,15 +109,19 @@ app.post("/login", (req, res) => {
 
     if (result.length > 0) {
       bcrypt.compare(password, result[0].UserPassword, (error, response) => {
-        console.log(response);
-        console.log(result[0]);
         if (response) {
-          const id = result[0].id; //getting id from the first user in the list
-          const token = jwt.sign({ id }, "jwtSecret", {
-            expiresIn: 300,
-          }); //make jwtSecret into a .env file and .env variable
-
-          console.log(token);
+          const id = result[0].UserID; //getting id from the first user in the list
+          const isAdmin = result[0].IsAdmin; //getting admin from the first user in the list
+          const firstName = result[0].UserFirstName; //getting first name from the first user in the list
+          const lastName = result[0].UserLastName; //getting last name from the first user in the list
+          const phoneNumber = result[0].UserPhone; //getting phone number from the first user in the list
+          const token = jwt.sign(
+            { id, isAdmin, firstName, lastName, phoneNumber },
+            "jwtSecret",
+            {
+              expiresIn: 300,
+            }
+          ); //make jwtSecret into a .env file and .env variable - the token is jwtSecret
 
           req.session.user = result;
 
@@ -168,12 +172,45 @@ app.post("/createcourse", (req, res) => {
   );
 });
 
-//User data
-app.get("/user", (req, res) => {
+//User
+app.get("/user/get", (req, res) => {
   const sqlSelect = "SELECT * FROM USERS";
   db.query(sqlSelect, (err, result) => {
     res.send(result);
   });
+});
+
+//DELETE user
+app.delete("/user/delete/:UserEmail", (req, res) => {
+  const email = req.params.UserEmail;
+  const sqlDelete = "DELETE FROM USERS WHERE UserEmail = ?"; //only one variable, so no need to create object
+  db.query(sqlDelete, email, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+//Update user
+app.put("/user/update", (req, res) => {
+  const email = req.body.UserEmail;
+  const password = req.body.Userpassword;
+  const firstname = req.body.UserFirstName;
+  const lastname = req.body.UserLastName;
+  const phone = req.body.UserPhone;
+
+  const sqlUpdate =
+    "UPDATE USERS SET UserName = ?, UserPassword = ?, UserFirstName = ?, UserLastName = ?, UserPhone = ? WHERE UserEmail, UserPassword, UserFirstName, UserLastName, UserPhone = (?, ?, ?, ?, ?)";
+
+  db.query(
+    sqlUpdate,
+    [email, password, firstname, lastname, phone],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
 });
 
 app.listen(3001, () => {

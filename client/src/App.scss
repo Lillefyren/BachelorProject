@@ -290,3 +290,37 @@ body {
     @include primary-button;
   }
 }
+
+//PROFILEINFORMATION
+.profileinformation {
+  display: flex;
+  flex-direction: column;
+  .profileinformation__firstname-input {
+  }
+
+  .profileinformation__lastname-input {
+  }
+
+  .profileinformation__phone-input {
+  }
+
+  .profileinformation__password-input {
+  }
+
+  .profileinformation_btn-wrapper {
+  }
+
+  .profileinformation__update-btn,
+  .profileinformation__delete-btn {
+    @include primary-button;
+    margin-top: 15px;
+  }
+
+  .profileinformation__update-btn {
+    float: left;
+  }
+
+  .profileinformation__delete-btn {
+    float: right;
+  }
+}
