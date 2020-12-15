@@ -112,7 +112,7 @@ app.post("/login", (req, res) => {
         console.log(response);
         console.log(result[0]);
         if (response) {
-          const id = result[0].id; //getting id from the first user in the list
+          const id = result[0].UserID; //getting id from the first user in the list
           console.log("HER ER VORES ID ", id);
           const token = jwt.sign({ id }, "jwtSecret", {
             expiresIn: 300,

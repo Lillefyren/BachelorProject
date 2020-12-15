@@ -72,6 +72,9 @@ function MainContent(props) {
         <Route path={"/CourseOverview"} exact>
           <CourseOverview />
         </Route>
+        <Route path={"/Createcourse"} exact>
+          <CreateCourse />
+        </Route>
         <Route path={"/Logout"} exact></Route>
       </Switch>
     </>

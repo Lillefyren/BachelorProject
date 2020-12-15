@@ -10,6 +10,7 @@ function Teamoverview() {
   const [endDateReg, setendDateReg] = useState("");
   const [priceReg, setpriceReg] = useState("");
   const [pictureReg, setpictureReg] = useState("");
+  const [adresseReg, setadresseReg] = useState("");
   const [instructorNamesReg, setinstructorNamesReg] = useState("");
 
   Axios.defaults.withCredentials = true;
@@ -20,6 +21,7 @@ function Teamoverview() {
     spaces: spacesReg,
     startDate: startDateReg,
     endDate: endDateReg,
+    adresse: adresseReg,
     price: priceReg,
     picture: pictureReg,
     instructorNames: instructorNamesReg,
@@ -59,6 +61,15 @@ function Teamoverview() {
             setendDateReg(e.target.value);
           }}
         ></input>
+
+        <label>Adresse</label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setadresseReg(e.target.value);
+          }}
+        ></input>
+
         <label>Pris</label>
         <input
           type="text"
