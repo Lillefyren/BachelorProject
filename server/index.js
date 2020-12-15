@@ -172,8 +172,16 @@ app.post("/createcourse", (req, res) => {
   );
 });
 
-//User
-app.get("/user/get", (req, res) => {
+app.get("/getcourses", (req, res) => {
+    // Get the table contents
+        db.query("SELECT * FROM course", (err, results, fields) => {
+          if(err) throw err;
+          res.send(results);
+        });
+      });
+
+//User data
+app.get("/user", (req, res) => {
   const sqlSelect = "SELECT * FROM USERS";
   db.query(sqlSelect, (err, result) => {
     res.send(result);

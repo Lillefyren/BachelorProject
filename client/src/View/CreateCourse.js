@@ -101,7 +101,7 @@ function CreateCourse() {
 
         <label>Billede</label>
         <input
-          type="file"
+          type="text"
           onChange={(e) => {
             setpictureReg(e.target.value);
           }}

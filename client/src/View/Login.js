@@ -68,8 +68,8 @@ function Login() {
           }}
         />
         <Col>
-          <a href="">Opret bruger</a>
-          <a href="">Glemt password</a>
+          <a href="/">Opret bruger</a>
+          <a href="/">Glemt password</a>
         </Col>
         <button className="login__btn" onClick={login}>
           Login
