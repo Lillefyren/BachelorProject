@@ -2,7 +2,6 @@ import react, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
 function Teamoverview() {
-  
   //usestate for course creation
   const [titleReg, settitleReg] = useState("");
   const [spacesReg, setspacesReg] = useState("");
@@ -16,7 +15,7 @@ function Teamoverview() {
   Axios.defaults.withCredentials = true;
 
   //find course table
-    Axios.get("http://localhost:3001/getcourses", {
+  Axios.get("http://localhost:3001/getcourses", {
     title: titleReg,
     spaces: spacesReg,
     startDate: startDateReg,
@@ -25,13 +24,13 @@ function Teamoverview() {
     price: priceReg,
     picture: pictureReg,
     instructorNames: instructorNamesReg,
-    }).then((response) => {
-      console.log(response);
-    });
+  }).then((response) => {
+    console.log(response);
+  });
 
   return (
     <>
-      <div className="registration">
+      <div className="createcourse">
         <h1>Skab nyt kursus</h1>
         <label>Titel</label>
         <input
@@ -98,4 +97,3 @@ function Teamoverview() {
 }
 
 export default Teamoverview;
-

@@ -4,10 +4,12 @@ import { TokenContext } from "../Component/TokenProvider";
 import { Col } from "react-bootstrap";
 
 function ProfileInformation() {
-  const { userFirstName, userLastName, userPhoneNumber } = React.useContext(
-    TokenContext
-  );
-  //const [profileinformation, setProfileinformation] = useState([]);
+  const {
+    userID,
+    userFirstName,
+    userLastName,
+    userPhoneNumber,
+  } = React.useContext(TokenContext);
   const [firstname, setFirstname] = useState(userFirstName);
   const [lastname, setLastname] = useState([userLastName]);
   const [phonenumber, setPhonenumber] = useState([userPhoneNumber]);
@@ -16,9 +18,6 @@ function ProfileInformation() {
   const [profilinformation, setProfileInformation] = useState([]);
 
   Axios.defaults.withCredentials = true;
-
-  //updating
-  //const [] = setState("");
 
   useEffect(() => {
     Axios.get("http://localhost:3001/user/get").then((response) => {
@@ -30,13 +29,18 @@ function ProfileInformation() {
     Axios.delete(`http://localhost:3001/user/delete/${UserEmail}`);
   };
 
-  const updateUser = (UserEmail) => {
-    Axios.put("http://localhost:3001/user/update", {
-      //userName: userName;
+  const updateUser = (userID) => {
+    Axios.put(`http://localhost:3001/user/update/${userID}`, {
+      userid: userID,
+      headers: { "Content-Type": "application/json" },
+      firstname: firstname,
+      lastname: lastname,
+      phonenumber: phonenumber,
+      password: password,
     }).then((response) => {
+      console.log(response);
       alert("updated");
     });
-    setNewUserName("");
   };
 
   return (
@@ -81,7 +85,9 @@ function ProfileInformation() {
       <div className="profileinformation__btn-wrapper">
         <button
           className="profileinformation__update-btn"
-          onClick={setProfileInformation}
+          onClick={() => {
+            updateUser();
+          }}
         >
           gem
         </button>

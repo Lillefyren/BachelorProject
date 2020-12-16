@@ -8,7 +8,7 @@ function TokenProvider(props) {
     localStorage.getItem("token") || null
   ); //either getting the local storage token or nothing
 
-  const decodedToken = token ? jwt_decode(token) : null;
+  const decodedToken = token ? jwt_decode(token) : null; //If token exist, decode the token, or null
 
   const handleSetToken = (token) => {
     localStorage.setItem("token", token); //setting local storage token

@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
 ); //allowing crossplatform sending data from frontend to backend
@@ -172,16 +172,8 @@ app.post("/createcourse", (req, res) => {
   );
 });
 
-app.get("/getcourses", (req, res) => {
-    // Get the table contents
-        db.query("SELECT * FROM course", (err, results, fields) => {
-          if(err) throw err;
-          res.send(results);
-        });
-      });
-
-//User data
-app.get("/user", (req, res) => {
+//User
+app.get("/user/get", (req, res) => {
   const sqlSelect = "SELECT * FROM USERS";
   db.query(sqlSelect, (err, result) => {
     res.send(result);
@@ -200,25 +192,33 @@ app.delete("/user/delete/:UserEmail", (req, res) => {
 });
 
 //Update user
-app.put("/user/update", (req, res) => {
-  const email = req.body.UserEmail;
-  const password = req.body.Userpassword;
-  const firstname = req.body.UserFirstName;
-  const lastname = req.body.UserLastName;
-  const phone = req.body.UserPhone;
+app.put("/user/update/:userID", (req, res) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const phonenumber = req.body.phonenumber;
+  const password = req.body.password;
+  const userid = req.params.userID;
 
   const sqlUpdate =
-    "UPDATE USERS SET UserName = ?, UserPassword = ?, UserFirstName = ?, UserLastName = ?, UserPhone = ? WHERE UserEmail, UserPassword, UserFirstName, UserLastName, UserPhone = (?, ?, ?, ?, ?)";
+    "UPDATE USERS SET UserFirstName = ?, UserLastName = ?, UserPhone = ?, UserPassword = ? WHERE UserID = ?";
 
-  db.query(
-    sqlUpdate,
-    [email, password, firstname, lastname, phone],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      }
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) {
+      console.log(err);
     }
-  );
+
+    db.query(
+      sqlUpdate,
+      [firstname, lastname, phonenumber, hash, userid],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  });
 });
 
 app.listen(3001, () => {
