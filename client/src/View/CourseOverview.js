@@ -10,7 +10,11 @@ function CourseOverview() {
 
   //find course table
   useEffect(()=>{
-    Axios.get("http://localhost:3001/getcourses").then((response) => {
+    Axios.all([
+    Axios.get("http://localhost:3001/getcourses"),
+    Axios.get("http://localhost:3001/getsinglelessons")
+  ])
+    .then((response) => {
       setData(response.data);
     console.log(response);
     })

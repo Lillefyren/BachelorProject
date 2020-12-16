@@ -41,6 +41,7 @@ function ProfileInformation() {
       console.log(response);
       alert("updated");
     });
+    //setNewUserName("");
   };
 
   return (
