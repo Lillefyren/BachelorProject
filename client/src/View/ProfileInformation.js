@@ -36,7 +36,7 @@ function ProfileInformation() {
     }).then((response) => {
       alert("updated");
     });
-    setNewUserName("");
+    //setNewUserName("");
   };
 
   return (

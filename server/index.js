@@ -178,7 +178,15 @@ app.get("/getcourses", (req, res) => {
           if(err) throw err;
           res.send(results);
         });
-      });
+});
+
+app.get("/getsinglelessons", (req, res) => {
+    // Get the table contents
+         db.query("SELECT * FROM lesson", (err, results, fields) => {
+          if(err) throw err;
+          res.send(results);
+          });
+});
 
 //User data
 app.get("/user", (req, res) => {
