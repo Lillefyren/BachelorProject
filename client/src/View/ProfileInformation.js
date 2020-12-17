@@ -25,12 +25,17 @@ function ProfileInformation() {
     });
   }, []);
 
-  const deleteUser = (UserEmail) => {
-    Axios.delete(`http://localhost:3001/user/delete/${UserEmail}`);
+  const deleteUser = () => {
+    Axios.delete("http://localhost:3001/user/delete", {
+      userid: userID,
+    }).then((response) => {
+      console.log(response);
+      alert("User has been deleted");
+    });
   };
 
-  const updateUser = (userID) => {
-    Axios.put(`http://localhost:3001/user/update/${userID}`, {
+  const updateUser = () => {
+    Axios.put("http://localhost:3001/user/update", {
       userid: userID,
       headers: { "Content-Type": "application/json" },
       firstname: firstname,
@@ -39,7 +44,7 @@ function ProfileInformation() {
       password: password,
     }).then((response) => {
       console.log(response);
-      alert("updated");
+      alert("Profilinformation has been");
     });
     //setNewUserName("");
   };
@@ -95,7 +100,7 @@ function ProfileInformation() {
         <button
           className="profileinformation__delete-btn"
           onClick={() => {
-            deleteUser(/*val.UserEmail*/);
+            deleteUser();
           }}
         >
           slet

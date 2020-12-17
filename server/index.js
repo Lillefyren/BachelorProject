@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 ); //allowing crossplatform sending data from frontend to backend
@@ -173,19 +173,19 @@ app.post("/createcourse", (req, res) => {
 });
 
 app.get("/getcourses", (req, res) => {
-    // Get the table contents
-        db.query("SELECT * FROM course", (err, results, fields) => {
-          if(err) throw err;
-          res.send(results);
-        });
+  // Get the table contents
+  db.query("SELECT * FROM course", (err, results, fields) => {
+    if (err) throw err;
+    res.send(results);
+  });
 });
 
 app.get("/getsinglelessons", (req, res) => {
-    // Get the table contents
-         db.query("SELECT * FROM lesson", (err, results, fields) => {
-          if(err) throw err;
-          res.send(results);
-          });
+  // Get the table contents
+  db.query("SELECT * FROM lesson", (err, results, fields) => {
+    if (err) throw err;
+    res.send(results);
+  });
 });
 
 //User data
@@ -197,23 +197,28 @@ app.get("/user", (req, res) => {
 });
 
 //DELETE user
-app.delete("/user/delete/:UserEmail", (req, res) => {
-  const email = req.params.UserEmail;
-  const sqlDelete = "DELETE FROM USERS WHERE UserEmail = ?"; //only one variable, so no need to create object
-  db.query(sqlDelete, email, (err, result) => {
+app.delete("/user/delete", (req, res) => {
+  const userid = req.body.userid;
+  const sqlDelete = "DELETE FROM `USERS` WHERE UserID = ?"; //only one variable, so no need to create object
+
+  console.log(userid);
+
+  db.query(sqlDelete, userid, (err, result) => {
     if (err) {
       console.log(err);
+    } else {
+      res.send(result);
     }
   });
 });
 
 //Update user
-app.put("/user/update/:userID", (req, res) => {
+app.put("/user/update", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   const phonenumber = req.body.phonenumber;
   const password = req.body.password;
-  const userid = req.params.userID;
+  const userid = req.body.userid;
 
   const sqlUpdate =
     "UPDATE USERS SET UserFirstName = ?, UserLastName = ?, UserPhone = ?, UserPassword = ? WHERE UserID = ?";
@@ -237,6 +242,8 @@ app.put("/user/update/:userID", (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("Running on port 3001");
+//PORT
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Running on port ${port}`);
 });
