@@ -4,6 +4,7 @@ import Axios from "axios";
 import { Container, Col } from "react-bootstrap";
 import { TokenContext } from "../Component/TokenProvider";
 import { useHistory } from "react-router-dom";
+import NavLink from "../Component/NavLink";
 
 function Login() {
   const { handleSetToken } = React.useContext(TokenContext); //obj destruction
@@ -68,7 +69,7 @@ function Login() {
           }}
         />
         <Col>
-          <a href="/">Opret bruger</a>
+          <NavLink to={"/Registration"} title="Opret bruger" />
           <a href="/">Glemt password</a>
         </Col>
         <button className="login__btn" onClick={login}>

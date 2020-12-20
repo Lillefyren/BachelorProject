@@ -1,7 +1,8 @@
 import react, { useState } from "react";
 import "../App.scss";
 import Axios from "axios";
-import { Row, Container } from "react-bootstrap";
+import { Row, Container, Col } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 function Registration() {
   //usestate for registration
@@ -13,6 +14,8 @@ function Registration() {
 
   Axios.defaults.withCredentials = true;
 
+  const history = useHistory();
+
   //sending register request to backend - register method
   const register = () => {
     Axios.post("http://localhost:3001/register", {
@@ -23,6 +26,8 @@ function Registration() {
       number: numberReg,
     }).then((response) => {
       console.log(response);
+      alert("Tillykke din bruger er blevet oprettet");
+      history.push("/login");
     });
   };
 
@@ -30,7 +35,7 @@ function Registration() {
     <>
       <Container className="registration">
         <h1 className="registration__title">Registration</h1>
-        <form className="registration__form" onSubmit="">
+        <form className="registration__form">
           <label className="registration__email-label">Email</label>
           <input
             className="registration__email-input"
@@ -71,9 +76,12 @@ function Registration() {
               setNumberReg(e.target.value);
             }}
           ></input>
-          <button className="registration__btn" onClick={register}>
-            Register
-          </button>
+          <div className="registration__btn-wrapper">
+            <button className="registration-back__btn">Tilbage</button>
+            <button className="registration-confirm__btn" onClick={register}>
+              Register
+            </button>
+          </div>
         </form>
       </Container>
     </>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { TokenContext } from "../Component/TokenProvider";
 import { Col } from "react-bootstrap";
+import axios from "../AxiosConfig";
 
 function ProfileInformation() {
   const {
@@ -15,38 +16,22 @@ function ProfileInformation() {
   const [phonenumber, setPhonenumber] = useState([userPhoneNumber]);
   const [password, setPassword] = useState([]);
 
-  const [profilinformation, setProfileInformation] = useState([]);
-
   Axios.defaults.withCredentials = true;
 
-  useEffect(() => {
-    Axios.get("http://localhost:3001/user/get").then((response) => {
-      setProfileInformation(response.data);
-    });
-  }, []);
-
-  const deleteUser = () => {
-    Axios.delete("http://localhost:3001/user/delete", {
-      userid: userID,
-    }).then((response) => {
-      console.log(response);
-      alert("User has been deleted");
-    });
-  };
-
   const updateUser = () => {
-    Axios.put("http://localhost:3001/user/update", {
-      userid: userID,
-      headers: { "Content-Type": "application/json" },
-      firstname: firstname,
-      lastname: lastname,
-      phonenumber: phonenumber,
-      password: password,
-    }).then((response) => {
-      console.log(response);
-      alert("Profilinformation has been");
-    });
-    //setNewUserName("");
+    axios
+      .put("/user/update", {
+        userid: userID,
+        headers: { "Content-Type": "application/json" },
+        firstname: firstname,
+        lastname: lastname,
+        phonenumber: phonenumber,
+        password: password,
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Profilinformationer er blevet opdateret");
+      });
   };
 
   return (
@@ -96,14 +81,6 @@ function ProfileInformation() {
           }}
         >
           gem
-        </button>
-        <button
-          className="profileinformation__delete-btn"
-          onClick={() => {
-            deleteUser();
-          }}
-        >
-          slet
         </button>
       </div>
     </Col>

@@ -237,10 +237,20 @@ body {
   .registration__phone-input {
   }
 
-  .registration__btn {
+  .registration-back__btn,
+  .registration-confirm__btn {
     margin-top: 15px;
     margin-bottom: 15px;
     @include primary-button;
+  }
+
+  button.registration-back__btn {
+    float: left;
+    margin-left: 0;
+  }
+
+  .registration-confirm__btn {
+    float: right;
   }
 }
 
