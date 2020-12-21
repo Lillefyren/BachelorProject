@@ -310,6 +310,7 @@ body {
 .createcourse {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 
   .createcourse__btn {
     @include primary-button;

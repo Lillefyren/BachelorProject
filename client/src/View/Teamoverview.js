@@ -2,6 +2,7 @@ import react, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
 import { Col } from "react-bootstrap";
+import axios from "../AxiosConfig";
 
 function Teamoverview() {
   //usestate for course creation
@@ -11,7 +12,7 @@ function Teamoverview() {
 
   //find course table
   useEffect(() => {
-    Axios.get("http://localhost:3001/getcourses").then((response) => {
+    axios.get("/getcourses").then((response) => {
       setData(response.data);
       console.log(response);
     });

@@ -2,6 +2,7 @@ import react, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
 import { Col } from "react-bootstrap";
+import axios from "../AxiosConfig";
 
 function CreateCourse() {
   //usestate for course creation
@@ -19,19 +20,21 @@ function CreateCourse() {
 
   //sending register request to backend - register method
   const create = () => {
-    Axios.post("http://localhost:3001/createcourse", {
-      title: titleReg,
-      description: descriptionReg,
-      spaces: spacesReg,
-      startDate: startDateReg,
-      endDate: endDateReg,
-      price: priceReg,
-      address: adresseReg,
-      picture: pictureReg,
-      instructorNames: instructorNamesReg,
-    }).then((response) => {
-      console.log(response);
-    });
+    axios
+      .post("/createcourse", {
+        title: titleReg,
+        description: descriptionReg,
+        spaces: spacesReg,
+        startDate: startDateReg,
+        endDate: endDateReg,
+        price: priceReg,
+        address: adresseReg,
+        picture: pictureReg,
+        instructorNames: instructorNamesReg,
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
 
   return (
