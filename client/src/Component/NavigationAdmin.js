@@ -32,7 +32,7 @@ function NavigationAdmin() {
           <NavLinks to={"/Createcourse"} title="Opret hold" />
         </NavItem>
         <NavItem>
-          <button onClick={() => handleRemoveToken()}>logud</button>
+          <button onClick={() => handleRemoveToken()}>Logud</button>
         </NavItem>
       </NavUl>
     </>

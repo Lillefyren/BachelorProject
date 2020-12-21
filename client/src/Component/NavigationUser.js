@@ -3,15 +3,19 @@ import NavUl from "./NavUl";
 import NavItem from "./NavItem";
 import { TokenContext } from "./TokenProvider";
 import NavLinks from "./NavLinks";
+import logo from "../img/logo.png";
 
 //navigation for user
 function NavigationUser() {
   const { handleRemoveToken } = React.useContext(TokenContext);
+  const logoStyle = {
+    width: "100%",
+  };
 
   return (
     <>
       <NavUl>
-        <img src="../img/jord-logo.png" alt="logo" width="500" height="600" />
+        <img src={logo} alt="logo" className="logo" style={logoStyle} />
         <NavItem>
           <NavLinks to={"/Home"} title="Holdoversigt" />
         </NavItem>
@@ -25,7 +29,7 @@ function NavigationUser() {
           <NavLinks to={"/Profileinformation"} title="Profiloplysninger" />
         </NavItem>
         <NavItem>
-          <button onClick={() => handleRemoveToken()}>logud</button>
+          <button onClick={() => handleRemoveToken()}>Logud</button>
         </NavItem>
       </NavUl>
     </>

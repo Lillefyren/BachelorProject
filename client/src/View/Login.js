@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../App.scss";
 import Axios from "axios";
-import { Container, Col } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { TokenContext } from "../Component/TokenProvider";
 import { useHistory } from "react-router-dom";
 import NavLinks from "../Component/NavLinks";
@@ -69,8 +69,10 @@ function Login() {
           }}
         />
         <Col>
-          <NavLinks to={"/Registration"} title="Opret bruger" />
-          <a href="/">Glemt password</a>
+          <Row className="login__login-password-wrapper">
+            <NavLinks to={"/Registration"} title="Opret bruger" />
+            <a href="/">Glemt password</a>
+          </Row>
         </Col>
         <button className="login__btn" onClick={login}>
           Login

@@ -1,11 +1,12 @@
 import React from "react";
+import { Col } from "react-bootstrap";
 
 function WaitingList() {
   return (
     <>
-      <div className="waitinglist">
-        <h1>Venteliste</h1>
-      </div>
+      <Col className="waitinglist">
+        <h2>Venteliste</h2>
+      </Col>
     </>
   );
 }

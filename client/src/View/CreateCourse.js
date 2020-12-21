@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
+import { Col } from "react-bootstrap";
 
 function CreateCourse() {
   //usestate for course creation
@@ -35,8 +36,8 @@ function CreateCourse() {
 
   return (
     <>
-      <div className="createcourse">
-        <h1>Skab nyt kursus</h1>
+      <Col className="createcourse">
+        <h2>Skab nyt kursus</h2>
         <label>Titel</label>
         <input
           type="text"
@@ -107,8 +108,10 @@ function CreateCourse() {
           }}
         />
 
-        <button onClick={create}>Opret</button>
-      </div>
+        <button className="createcourse__btn" onClick={create}>
+          Opret
+        </button>
+      </Col>
     </>
   );
 }

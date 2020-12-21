@@ -13,7 +13,7 @@ body {
   height: 100vh;
 }
 
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -50,15 +50,15 @@ body {
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 //CARD
 
 .Card {
   border: 2px solid black;
   border-radius: 25px;
-  margin:5px;
-  width:20vw;
+  margin: 5px;
+  width: 20vw;
   .Card__header {
   }
 
@@ -294,9 +294,24 @@ body {
   .login__password-input {
   }
 
+  .login__login-password-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
   .login__btn {
     margin-top: 15px;
     margin-bottom: 15px;
+    @include primary-button;
+  }
+}
+
+//CREATE COURSE
+.createcourse {
+  display: flex;
+  flex-direction: column;
+
+  .createcourse__btn {
     @include primary-button;
   }
 }

@@ -26,9 +26,12 @@ function Registration() {
       number: numberReg,
     }).then((response) => {
       console.log(response);
-      alert("Tillykke din bruger er blevet oprettet");
-      history.push("/login");
+      alert("Tillykke din bruger er blevet oprettet - Du kan nu gå tilbage");
     });
+  };
+
+  const back = () => {
+    history.push("/login");
   };
 
   return (
@@ -77,7 +80,9 @@ function Registration() {
             }}
           ></input>
           <div className="registration__btn-wrapper">
-            <button className="registration-back__btn">Tilbage</button>
+            <button className="registration-back__btn" onClick={back}>
+              Tilbage
+            </button>
             <button className="registration-confirm__btn" onClick={register}>
               Register
             </button>

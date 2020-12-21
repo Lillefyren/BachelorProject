@@ -53,7 +53,6 @@ function MainContent(props) {
   return (
     <>
       <Switch>
-        <Route path="/" exact render={(props) => <div>Hey im a user</div>} />{" "}
         <Route path={"/"} exact>
           <Redirect to="/Home" />
         </Route>
