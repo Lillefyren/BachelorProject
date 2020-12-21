@@ -1,7 +1,13 @@
 import React from "react";
 
 function CancelationList() {
-  return <div>Venteliste</div>;
+  return (
+    <>
+      <div className="cancelationlist">
+        <h1>Afbudsliste</h1>
+      </div>
+    </>
+  );
 }
 
 export default CancelationList;
