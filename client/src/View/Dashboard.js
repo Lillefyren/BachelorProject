@@ -5,7 +5,7 @@ import NavigationUser from "../Component/NavigationUser";
 import MainContent from "../Component/MainContent";
 import { Spinner, Col } from "react-bootstrap";
 import TopBar from "../Component/TopBar";
-import axios from "../AxiosConfig";
+//import axios from "../AxiosConfig";
 
 export default function Homepage() {
   const [role, setRole] = useState("");
@@ -15,8 +15,7 @@ export default function Homepage() {
   //checking what role you have
   const getUserMod = () => {
     setIsLoading(true);
-    axios
-      .get("/login")
+    Axios.get("http://localhost:3001/login")
       .then((response) => {
         if (response.data.loggedIn == true) {
           setRole(response.data.user[0].IsAdmin.data[0]);

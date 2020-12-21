@@ -127,6 +127,11 @@ body {
     padding-bottom: 10px;
   }
 
+  .Card__btn-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
   .Card__btn {
     @include primary-button;
   }

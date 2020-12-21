@@ -6,8 +6,6 @@ import YourTeam from "../View/YourTeam";
 import ProfileInformation from "../View/ProfileInformation";
 import WaitingList from "../View/WaitingList";
 import CancelationList from "../View/CancelationList";
-import Logout from "../View/Logout";
-import CourseOverview from "../View/CourseOverview";
 
 //render det content der skal være på siden, i forhold til den route man er på
 //vise det rigtige content ift. URL
@@ -24,10 +22,6 @@ function MainContent(props) {
 
         <Route path={"/Home"} exact>
           <Teamoverview />
-        </Route>
-
-        <Route path={"/CourseOverview"} exact>
-          <CourseOverview />
         </Route>
 
         <Route path={"/Yourteam"} exact>
@@ -67,9 +61,6 @@ function MainContent(props) {
         </Route>
         <Route path={"/Profileinformation"} exact>
           <ProfileInformation />
-        </Route>
-        <Route path={"/CourseOverview"} exact>
-          <CourseOverview />
         </Route>
         <Route path={"/Createcourse"} exact>
           <CreateCourse />

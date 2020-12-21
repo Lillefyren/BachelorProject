@@ -24,7 +24,6 @@
 .dashboard__topbar {
   grid-area: t;
   background-color: $secondary-color;
-  //max-height: 86px;
 
   .dashboard__logo-title,
   .dashboard__fullname {
@@ -49,6 +48,7 @@
 .createcourse,
 .waitinglist,
 .cancelationlist,
-.profileinformation {
+.profileinformation,
+.yourteam {
   grid-area: m;
 }

@@ -153,7 +153,7 @@ app.post("/createcourse", (req, res) => {
   const address = req.body.address;
 
   db.query(
-    "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy, CourseAddress) VALUES (?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO COURSE (CourseTitle, CourseDescription, CourseSpaces, CourseStartDate, CourseEndDate, CoursePrice, CoursePicture, CourseInstructorNames, CreatedBy, CourseAddress) VALUES (?,?,?,?,?,?,?,?,?,?)",
     [
       title,
       description,

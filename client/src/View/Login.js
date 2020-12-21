@@ -5,7 +5,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import { TokenContext } from "../Component/TokenProvider";
 import { useHistory } from "react-router-dom";
 import NavLinks from "../Component/NavLinks";
-import axios from "../AxiosConfig";
+//import axios from "../AxiosConfig";
 
 function Login() {
   const { handleSetToken } = React.useContext(TokenContext); //obj destruction
@@ -23,32 +23,28 @@ function Login() {
 
   //login method
   const login = () => {
-    axios
-      .post("/login", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        if (!response.data.auth) {
-          setLoginStatus(false);
-        } else {
-          handleSetToken(response.data.token);
-          setLoginStatus(true);
-          history.push("/");
-        }
-      });
+    Axios.post("http://localhost:3001/login", {
+      email: email,
+      password: password,
+    }).then((response) => {
+      if (!response.data.auth) {
+        setLoginStatus(false);
+      } else {
+        handleSetToken(response.data.token);
+        setLoginStatus(true);
+        history.push("/");
+      }
+    });
   };
 
   const userAuthentication = () => {
-    axios
-      .get("/isUserAuth", {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    Axios.get("http://localhost:3001/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    }).then((response) => {
+      console.log(response);
+    });
   };
 
   return (
