@@ -159,13 +159,11 @@ body {
     background-color: $brown;
     color: $white;
   }
-}
 
-//UPPER BAR
-.tester {
-  background-color: red;
-  height: 200px;
-  width: 100%;
+  .primary-menu-active {
+    background-color: $brown;
+    color: $white;
+  }
 }
 
 //REGISTRATION
@@ -332,5 +330,10 @@ body {
 
   .profileinformation__delete-btn {
     float: right;
+  }
+
+  .logo {
+    width: 100%;
+    height: 220px;
   }
 }

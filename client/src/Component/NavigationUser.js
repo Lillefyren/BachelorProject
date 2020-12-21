@@ -1,8 +1,8 @@
 import React from "react";
 import NavUl from "./NavUl";
 import NavItem from "./NavItem";
-import NavLink from "./NavLink";
 import { TokenContext } from "./TokenProvider";
+import NavLinks from "./NavLinks";
 
 //navigation for user
 function NavigationUser() {
@@ -13,16 +13,16 @@ function NavigationUser() {
       <NavUl>
         <img src="../img/jord-logo.png" alt="logo" width="500" height="600" />
         <NavItem>
-          <NavLink to={"/Home"} title="Holdoversigt" />
+          <NavLinks to={"/Home"} title="Holdoversigt" />
         </NavItem>
         <NavItem>
-          <NavLink to={"/Yourteam"} title="Dine hold" />
+          <NavLinks to={"/Yourteam"} title="Dine hold" />
         </NavItem>
         <NavItem>
-          <NavLink to={"/Waitinglist"} title="Venteliste" />
+          <NavLinks to={"/Waitinglist"} title="Venteliste" />
         </NavItem>
         <NavItem>
-          <NavLink to={"/Profileinformation"} title="Profiloplysninger" />
+          <NavLinks to={"/Profileinformation"} title="Profiloplysninger" />
         </NavItem>
         <NavItem>
           <button onClick={() => handleRemoveToken()}>logud</button>
