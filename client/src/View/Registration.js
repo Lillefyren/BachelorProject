@@ -4,6 +4,7 @@ import Axios from "axios";
 import { Row, Container, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import axios from "../AxiosConfig";
+//import logo from "../img/logo.png";
 
 function Registration() {
   //usestate for registration
@@ -40,7 +41,10 @@ function Registration() {
   return (
     <>
       <Container className="registration">
-        <h1 className="registration__title">Registration</h1>
+        <h1 className="registration__title">Opret bruger</h1>
+        {/* <div className="registration__logo-wrapper">
+          <img className="registration__logo" src={logo} alt="logo" />
+        </div> */}
         <form className="registration__form">
           <label className="registration__email-label">Email</label>
           <input

@@ -37,7 +37,7 @@ function Login() {
     });
   };
 
-  const userAuthentication = () => {
+  /*  const userAuthentication = () => {
     Axios.get("http://localhost:3001/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
@@ -45,7 +45,7 @@ function Login() {
     }).then((response) => {
       console.log(response);
     });
-  };
+  }; */
 
   return (
     <>
@@ -80,9 +80,9 @@ function Login() {
         </button>
       </Container>
 
-      {loginStatus && (
+      {/*{loginStatus && (
         <button onClick={userAuthentication}> Check if authenticated</button>
-      )}
+      )} */}
     </>
   );
 }

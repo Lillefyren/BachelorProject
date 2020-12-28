@@ -6,6 +6,8 @@ import YourTeam from "../View/YourTeam";
 import ProfileInformation from "../View/ProfileInformation";
 import WaitingList from "../View/WaitingList";
 import CancelationList from "../View/CancelationList";
+import { TokenContext } from "./TokenProvider";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 //render det content der skal være på siden, i forhold til den route man er på
 //vise det rigtige content ift. URL
@@ -13,6 +15,8 @@ import CancelationList from "../View/CancelationList";
 
 function MainContent(props) {
   //admin
+  //const { userAdmin } = React.useContext(TokenContext);
+
   if (props.isAdmin) {
     return (
       <Switch>
@@ -61,9 +65,6 @@ function MainContent(props) {
         </Route>
         <Route path={"/Profileinformation"} exact>
           <ProfileInformation />
-        </Route>
-        <Route path={"/Createcourse"} exact>
-          <CreateCourse />
         </Route>
         <Route path={"/Logout"} exact></Route>
       </Switch>

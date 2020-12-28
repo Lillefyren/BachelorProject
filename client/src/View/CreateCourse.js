@@ -38,7 +38,7 @@ function CreateCourse() {
   return (
     <>
       <Col className="createcourse">
-        <h2>Skab nyt kursus</h2>
+        <h2>Opret hold</h2>
         <label>Titel</label>
         <input
           type="text"

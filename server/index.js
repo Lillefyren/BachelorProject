@@ -109,6 +109,7 @@ app.post("/login", (req, res) => {
 
     if (result.length > 0) {
       bcrypt.compare(password, result[0].UserPassword, (error, response) => {
+        //checking if the user password is the same password for the current user trying to login
         if (response) {
           const id = result[0].UserID; //getting id from the first user in the list
           const isAdmin = result[0].IsAdmin; //getting admin from the first user in the list
@@ -121,7 +122,7 @@ app.post("/login", (req, res) => {
             {
               expiresIn: 300,
             }
-          ); //make jwtSecret into a .env file and .env variable - the token is jwtSecret
+          );
 
           req.session.user = result;
 

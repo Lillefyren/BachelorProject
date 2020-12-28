@@ -60,10 +60,20 @@ body {
   margin: 5px;
   width: 20vw;
   .Card__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
 
   .Card__image {
-    position: relative;
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+    max-height: 200px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    //background-size: cover;
   }
 
   //Cross
@@ -87,6 +97,10 @@ body {
   }
 
   .Card__body {
+    border-top: 2px solid $gray;
+    background-color: $background-color;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .Card__title {
@@ -101,39 +115,54 @@ body {
   .Card__instructor,
   .Card__price,
   .Card__start-date,
-  .Card__end-date {
+  .Card__end-date,
+  .Card__spaces {
     font-size: 16px;
-    color: $gray;
+    color: $black;
     font-family: $font-family;
     font-weight: 400;
   }
 
   .Card__instructor {
-    padding-top: 10px;
+    padding-top: 0;
+    margin-bottom: 0;
   }
 
   .Card__price {
+    margin-bottom: 0;
   }
 
   .Card__spaces {
-    padding-bottom: 10px;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   .Card__start-date {
-    padding-top: 10px;
+    padding-top: 15px;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   .Card__end-date {
-    padding-bottom: 10px;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0;
   }
 
   .Card__btn-wrapper {
     display: flex;
     justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .Card__btn {
     @include primary-button;
+
+    &:hover {
+      color: $white;
+      background-color: $brown;
+    }
   }
 }
 
@@ -177,6 +206,27 @@ body {
 .registration {
   padding: 15px 0px;
   border: 2px solid $gray;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  //max-width: 50px;
+  //min-width: 320px;
+  //min-height: 338px;
+  //max-height: 440px;
+  //width: calc(100% - 40px);
+
+  .registration__logo-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .registration__logo {
+    height: 400px;
+    width: 400px;
+  }
 
   .registration__form {
     display: flex;
@@ -210,6 +260,7 @@ body {
     color: $gray;
     font-size: $font-size-base;
     margin-bottom: 15px;
+    border: 1px solid $black;
   }
 
   .registration__email-label {
@@ -287,16 +338,20 @@ body {
     text-align: center;
   }
 
-  .login__email-label {
+  .login .login__wrapper {
+    display: flex;
+    flex-direction: column;
   }
 
-  .login__email-input {
+  .login .login__title {
+    font-family: $font-family;
+    color: $gray;
+    text-align: center;
   }
 
-  .login__password-label {
-  }
-
+  .login__email-input,
   .login__password-input {
+    border: 1px solid $black;
   }
 
   .login__login-password-wrapper {

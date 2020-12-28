@@ -5,6 +5,7 @@ import NavigationUser from "../Component/NavigationUser";
 import MainContent from "../Component/MainContent";
 import { Spinner, Col } from "react-bootstrap";
 import TopBar from "../Component/TopBar";
+import { TokenContext } from "../Component/TokenProvider";
 //import axios from "../AxiosConfig";
 
 export default function Homepage() {
@@ -18,7 +19,7 @@ export default function Homepage() {
     Axios.get("http://localhost:3001/login")
       .then((response) => {
         if (response.data.loggedIn == true) {
-          setRole(response.data.user[0].IsAdmin.data[0]);
+          setRole(response.data.user[0].IsAdmin);
         }
       })
       .then(() => {
@@ -30,6 +31,8 @@ export default function Homepage() {
   useEffect(() => {
     getUserMod();
   }, [role]);
+
+  const { userAdmin } = React.useContext(TokenContext);
 
   //if loading, we will return a spinner, untill routes get found untill role is figured out.
   if (isLoading) {
@@ -48,7 +51,7 @@ export default function Homepage() {
         <NavigationUser className="dasboard__navigation-User" />
       )}
       <TopBar className="dashboard__topbar" />
-      <MainContent className="dashboard__maincontent" isAdmin={role} />
+      <MainContent className="dashboard__maincontent" isAdmin={userAdmin} />
     </div>
   );
 }
