@@ -6,7 +6,9 @@ import axios from "../AxiosConfig";
 
 function ProfileInformation() {
   const {
+    token,
     userID,
+    handleRemoveToken,
     userFirstName,
     userLastName,
     userPhoneNumber,
@@ -17,6 +19,7 @@ function ProfileInformation() {
   const [password, setPassword] = useState([]);
 
   Axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
 
   const updateUser = () => {
     axios
@@ -31,6 +34,20 @@ function ProfileInformation() {
       .then((response) => {
         console.log(response);
         alert("Profilinformationer er blevet opdateret");
+      });
+  };
+
+  const deleteUser = () => {
+    axios
+      .delete("/user/delete", {
+        data: {
+          userid: userID,
+        },
+      })
+      .then((response) => {
+        handleRemoveToken();
+        console.log(response);
+        alert("Profilen er blevet slettet");
       });
   };
 
@@ -74,13 +91,16 @@ function ProfileInformation() {
         }}
       />
       <div className="profileinformation__btn-wrapper">
+        <button className="profileinformation__delete-btn" onClick={deleteUser}>
+          Slet
+        </button>
         <button
           className="profileinformation__update-btn"
           onClick={() => {
             updateUser();
           }}
         >
-          gem
+          Gem
         </button>
       </div>
     </Col>

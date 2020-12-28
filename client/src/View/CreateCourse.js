@@ -1,7 +1,8 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.scss";
 import Axios from "axios";
 import { Col } from "react-bootstrap";
+import { TokenContext } from "../Component/TokenProvider";
 //import axios from "../AxiosConfig";
 
 function CreateCourse() {
@@ -16,11 +17,14 @@ function CreateCourse() {
   const [pictureReg, setpictureReg] = useState("");
   const [instructorNamesReg, setinstructorNamesReg] = useState("");
 
+  const { userID } = React.useContext(TokenContext);
+
   Axios.defaults.withCredentials = true;
 
   //sending register request to backend - register method
   const create = () => {
     Axios.post("http://localhost:3001/createcourse", {
+      userid: userID,
       title: titleReg,
       description: descriptionReg,
       spaces: spacesReg,

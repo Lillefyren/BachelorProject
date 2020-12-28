@@ -143,6 +143,7 @@ app.post("/login", (req, res) => {
 
 //Create Course
 app.post("/createcourse", (req, res) => {
+  const userid = req.body.userid;
   const title = req.body.title;
   const description = req.body.description;
   const spaces = req.body.spaces;
@@ -164,7 +165,7 @@ app.post("/createcourse", (req, res) => {
       price,
       picture,
       instructorNames,
-      1,
+      userid,
       address,
     ],
     (err, result) => {
@@ -200,11 +201,9 @@ app.get("/user", (req, res) => {
 //DELETE user
 app.delete("/user/delete", (req, res) => {
   const userid = req.body.userid;
-  const sqlDelete = "DELETE FROM `USERS` WHERE UserID = ?"; //only one variable, so no need to create object
+  const sqlDelete = "DELETE from USERS WHERE UserID = ?"; //only one variable, so no need to create object
 
-  console.log(userid);
-
-  db.query(sqlDelete, userid, (err, result) => {
+  db.query(sqlDelete, [userid], (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -220,6 +219,8 @@ app.put("/user/update", (req, res) => {
   const phonenumber = req.body.phonenumber;
   const password = req.body.password;
   const userid = req.body.userid;
+
+  console.log(userid);
 
   const sqlUpdate =
     "UPDATE USERS SET UserFirstName = ?, UserLastName = ?, UserPhone = ?, UserPassword = ? WHERE UserID = ?";
