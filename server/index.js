@@ -174,8 +174,56 @@ app.post("/createcourse", (req, res) => {
   );
 });
 
+//Assign course
+app.post("/course/assign", (req, res) => {
+  const userid = req.body.userid;
+  const courseid = req.body.courseid;
+  const sqlInsert = "INSERT INTO COURSEBOOKING (CourseID, UserID) VALUES (?,?)";
+
+  db.query(sqlInsert, [courseid, userid], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+//Cancel user from assigned course
+app.delete("/course/cancellation", (req, res) => {
+  const userid = req.body.userid;
+  const courseid = req.body.courseid;
+  const sqlDelete =
+    "DELETE from COURSEBOOKING WHERE UserID = ? AND CourseID = ?";
+
+  db.query(sqlDelete, [userid, courseid], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+//Get users assigned for the course
+app.get("/course/getassigns", (req, res) => {
+  const courseid = req.body.courseid;
+
+  console.log("Dette kursusID " + courseid);
+
+  const sqlGet = "SELECT * FROM COURSEBOOKING WHERE CourseID = ?";
+
+  db.query(sqlGet, [courseid], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+//Get course
 app.get("/getcourses", (req, res) => {
-  // Get the table contents
   db.query("SELECT * FROM course", (err, results, fields) => {
     if (err) throw err;
     res.send(results);
@@ -183,7 +231,6 @@ app.get("/getcourses", (req, res) => {
 });
 
 app.get("/getsinglelessons", (req, res) => {
-  // Get the table contents
   db.query("SELECT * FROM lesson", (err, results, fields) => {
     if (err) throw err;
     res.send(results);

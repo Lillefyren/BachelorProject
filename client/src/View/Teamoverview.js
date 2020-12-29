@@ -10,7 +10,8 @@ function Teamoverview() {
   //usestate for course creation
   const [data, setData] = useState([]);
   Axios.defaults.withCredentials = true;
-  const { userAdmin } = React.useContext(TokenContext);
+  axios.defaults.withCredentials = true;
+  const { userAdmin, userID } = React.useContext(TokenContext);
 
   //find course table
   useEffect(() => {
@@ -22,7 +23,44 @@ function Teamoverview() {
 
   const edit = () => {};
 
-  const assign = () => {};
+  //function for cancel user from assigned course
+  const cancellation = (CourseID) => {
+    axios
+      .delete("/course/cancellation", {
+        data: {
+          userid: userID,
+          courseid: CourseID,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
+
+  //function for assigning an user to a course
+  const assign = (CourseID) => {
+    axios
+      .post("/course/assign", {
+        userid: userID,
+        courseid: CourseID,
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
+
+  //function for getting list of assigned users
+  const spaces = (CourseID) => {
+    axios
+      .get("/course/getassigns", {
+        data: {
+          courseid: CourseID,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
 
   return (
     <Col className="teamoverview">
@@ -50,10 +88,31 @@ function Teamoverview() {
                     Rediger
                   </button>
                 ) : (
-                  <button className="Card__btn" onClick={assign}>
+                  <button
+                    className="Card__btn"
+                    onClick={() => {
+                      assign(course.CourseID);
+                    }}
+                  >
                     Tilmeld
                   </button>
                 )}
+                <button
+                  className="Card__btn"
+                  onClick={() => {
+                    spaces(course.CourseID);
+                  }}
+                >
+                  Test
+                </button>
+                <button
+                  className="Card__btn"
+                  onClick={() => {
+                    cancellation(course.CourseID);
+                  }}
+                >
+                  Afbud
+                </button>
               </Row>
             </Col>
           </div>
