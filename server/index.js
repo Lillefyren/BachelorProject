@@ -205,15 +205,14 @@ app.delete("/course/cancellation", (req, res) => {
   });
 });
 
-//Get users assigned for the course
+//Get users assigned for the course - right now this doesnt matter bcs we do INNER JOIN on /getcourses
 app.get("/course/getassigns", (req, res) => {
-  const courseid = req.body.courseid;
-
-  console.log("Dette kursusID " + courseid);
+  const id = req.query.id;
+  console.log("Dette kursusID " + id);
 
   const sqlGet = "SELECT * FROM COURSEBOOKING WHERE CourseID = ?";
 
-  db.query(sqlGet, [courseid], (err, result) => {
+  db.query(sqlGet, [id], (err, result) => {
     if (err) {
       console.log(err);
     } else {
@@ -222,12 +221,15 @@ app.get("/course/getassigns", (req, res) => {
   });
 });
 
-//Get course
+//Get all courses
 app.get("/getcourses", (req, res) => {
-  db.query("SELECT * FROM course", (err, results, fields) => {
-    if (err) throw err;
-    res.send(results);
-  });
+  db.query(
+    "SELECT course.CourseID, course.CourseTitle, course.CourseSpaces, course.CourseStartDate, course.CourseEndDate, course.CourseInstructorNames, count(coursebooking.CourseID) as CourseBookingCount FROM `course` LEFT JOIN coursebooking ON course.CourseID = coursebooking.CourseID GROUP BY Course.CourseID",
+    (err, results, fields) => {
+      if (err) throw err;
+      res.send(results);
+    }
+  );
 });
 
 app.get("/getsinglelessons", (req, res) => {

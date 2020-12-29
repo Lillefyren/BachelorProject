@@ -50,17 +50,18 @@ function Teamoverview() {
   };
 
   //function for getting list of assigned users
-  const spaces = (CourseID) => {
+  /* const spaces = (CourseID) => {
+    console.log(CourseID);
     axios
-      .get("/course/getassigns", {
+      .get(`/course/getassigns?id=${CourseID}`, {
         data: {
-          courseid: CourseID,
+          id: CourseID,
         },
       })
       .then((response) => {
         console.log(response);
       });
-  };
+  }; */
 
   return (
     <Col className="teamoverview">
@@ -78,7 +79,9 @@ function Teamoverview() {
               <h2 className="Card__title">{course.CourseTitle}</h2>
               <p className="Card__instructor">{course.CourseInstructorNames}</p>
               <p className="Card__price">DKK {course.CoursePrice}</p>
-              <p className="Card__spaces">0 / {course.CourseSpaces}</p>
+              <p className="Card__spaces">
+                {course.CourseBookingCount} / {course.CourseSpaces}
+              </p>
               <p className="Card__start-date">{course.CourseStartDate}</p>
               <p className="Card__end-date">{course.CourseEndDate}</p>
 
@@ -97,22 +100,16 @@ function Teamoverview() {
                     Tilmeld
                   </button>
                 )}
-                <button
-                  className="Card__btn"
-                  onClick={() => {
-                    spaces(course.CourseID);
-                  }}
-                >
-                  Test
-                </button>
-                <button
-                  className="Card__btn"
-                  onClick={() => {
-                    cancellation(course.CourseID);
-                  }}
-                >
-                  Afbud
-                </button>
+                {userAdmin === 0 && (
+                  <button
+                    className="Card__btn"
+                    onClick={() => {
+                      cancellation(course.CourseID);
+                    }}
+                  >
+                    Afbud
+                  </button>
+                )}
               </Row>
             </Col>
           </div>
