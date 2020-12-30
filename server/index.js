@@ -208,7 +208,6 @@ app.delete("/course/cancellation", (req, res) => {
 //Get users assigned for the course - right now this doesnt matter bcs we do INNER JOIN on /getcourses
 app.get("/course/getassigns", (req, res) => {
   const id = req.query.id;
-  console.log("Dette kursusID " + id);
 
   const sqlGet = "SELECT * FROM COURSEBOOKING WHERE CourseID = ?";
 

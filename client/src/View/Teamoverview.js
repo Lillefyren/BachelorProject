@@ -23,20 +23,6 @@ function Teamoverview() {
 
   const edit = () => {};
 
-  //function for cancel user from assigned course
-  const cancellation = (CourseID) => {
-    axios
-      .delete("/course/cancellation", {
-        data: {
-          userid: userID,
-          courseid: CourseID,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  };
-
   //function for assigning an user to a course
   const assign = (CourseID) => {
     axios
@@ -98,16 +84,6 @@ function Teamoverview() {
                     }}
                   >
                     Tilmeld
-                  </button>
-                )}
-                {userAdmin === 0 && (
-                  <button
-                    className="Card__btn"
-                    onClick={() => {
-                      cancellation(course.CourseID);
-                    }}
-                  >
-                    Afbud
                   </button>
                 )}
               </Row>

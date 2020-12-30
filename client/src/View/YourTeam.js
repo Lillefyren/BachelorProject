@@ -9,7 +9,9 @@ import cardphoto from "../img/cardphoto.jpg";
 function YourTeam() {
   //usestate for course creation
   const [data, setData] = useState([]);
-  const { userAdmin } = React.useContext(TokenContext);
+  Axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;
+  const { userAdmin, userID } = React.useContext(TokenContext);
 
   Axios.defaults.withCredentials = true;
 
@@ -20,6 +22,21 @@ function YourTeam() {
       console.log(response);
     });
   }, []);
+
+  //function for cancel user from assigned course
+  const cancellation = (CourseID) => {
+    axios
+      .delete("/course/cancellation", {
+        data: {
+          userid: userID,
+          courseid: CourseID,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+  };
+
   return (
     <Col className="yourteam">
       <h2>Dine hold</h2>
@@ -36,7 +53,9 @@ function YourTeam() {
               <h2 className="Card__title">{course.CourseTitle}</h2>
               <p className="Card__instructor">{course.CourseInstructorNames}</p>
               <p className="Card__price">DKK {course.CoursePrice}</p>
-              <p className="Card__spaces">0 / {course.CourseSpaces}</p>
+              <p className="Card__spaces">
+                {course.CourseBookingCount} / {course.CourseSpaces}
+              </p>
               <p className="Card__start-date">{course.CourseStartDate}</p>
               <p className="Card__end-date">{course.CourseEndDate}</p>
 
@@ -44,7 +63,14 @@ function YourTeam() {
                 {userAdmin === 1 ? (
                   <button className="Card__btn">Rediger</button>
                 ) : (
-                  <button className="Card__btn">Afbud</button>
+                  <button
+                    className="Card__btn"
+                    onClick={() => {
+                      cancellation(course.CourseID);
+                    }}
+                  >
+                    Afbud
+                  </button>
                 )}
               </Row>
             </Col>
